@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="page_title">العرض الفني والمالي الرقمي | MTCIT NetZero | ESG 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+        colors: {
+          edeep: '#064e3b', emed: '#047857', elight: '#34d399',
+          sdeep: '#020617', sdark: '#0f172a', smed: '#1e293b', slight: '#334155',
+          gold: '#fbbf24', goldark: '#d97706',
+        }
+      }
+    }
+  };
+</script>
+<style>
+/* =================== RESET & BASE =================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: direction 0.3s ease;
+}
+/* =================== SCROLL REVEAL =================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(32px); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+/* =================== HERO =================== */
+.hero-wrap {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse 120% 80% at 50% 40%, #064e3b22 0%, transparent 70%),
+              linear-gradient(160deg, #020617 0%, #0f172a 45%, #022c22 100%);
+  overflow: hidden;
+}
+.hero-canvas-svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+.net-line { stroke-dasharray: 500; stroke-dashoffset: 500; }
+.net-line-1 { animation: drawLine 7s ease-in-out infinite; }
+.net-line-2 { animation: drawLine 9s ease-in-out infinite 1.5s; }
+.net-line-3 { animation: drawLine 11s ease-in-out infinite 3s; }
+.net-line-4 { animation: drawLine 8s ease-in-out infinite 5s; }
+@keyframes drawLine {
+  0%   { stroke-dashoffset: 500; opacity: 0; }
+  20%  { opacity: 0.5; }
+  60%  { stroke-dashoffset: 0; opacity: 0.35; }
+  100% { stroke-dashoffset: -500; opacity: 0; }
+}
+.pulse-node { animation: pulseNode 4s ease-out infinite; }
+.pulse-node:nth-child(2) { animation-delay: 1s; }
+.pulse-node:nth-child(3) { animation-delay: 2.2s; }
+.pulse-node:nth-child(4) { animation-delay: 0.6s; }
+.pulse-node:nth-child(5) { animation-delay: 3.1s; }
+@keyframes pulseNode {
+  0%   { r: 3; opacity: 0.8; }
+  60%  { r: 14; opacity: 0.1; }
+  100% { r: 3; opacity: 0; }
+}
+.orbit-ring { animation: orbitSpin 28s linear infinite; transform-origin: center; }
+.orbit-ring-r { animation: orbitSpin 38s linear infinite reverse; transform-origin: center; }
+@keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.data-stream { animation: streamFlow 6s ease-in-out infinite; }
+.data-stream:nth-child(2) { animation-delay: 2s; }
+.data-stream:nth-child(3) { animation-delay: 4s; }
+@keyframes streamFlow {
+  0%   { opacity: 0; transform: translateY(0); }
+  30%  { opacity: 0.4; }
+  80%  { opacity: 0.1; transform: translateY(-30px); }
+  100% { opacity: 0; transform: translateY(-40px); }
+}
+/* =================== NAVBAR =================== */
+.navbar {
+  position: relative; z-index: 100;
+  padding: 22px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid rgba(52,211,153,0.1);
+  background: rgba(2,6,23,0.35);
+  backdrop-filter: blur(12px);
+}
+.logo-mark {
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, #064e3b 0%, #34d399 100%);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px rgba(52,211,153,0.25);
+}
+.live-dot {
+  width: 8px; height: 8px;
+  background: #34d399; border-radius: 50%;
+  box-shadow: 0 0 8px #34d399;
+  animation: livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { box-shadow: 0 0 6px #34d399; }
+  50% { box-shadow: 0 0 16px #34d399; }
+}
+/* =================== HERO CONTENT =================== */
+.hero-content {
+  position: relative; z-index: 10;
+  flex: 1;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 56px 40px 48px;
+}
+.super-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(90deg, rgba(6,78,59,0.55), rgba(52,211,153,0.15));
+  border: 1px solid rgba(52,211,153,0.4);
+  border-radius: 100px; padding: 8px 24px;
+  font-size: 13px; font-weight: 700;
+  color: #34d399; letter-spacing: 0.3px;
+  margin-bottom: 36px;
+  backdrop-filter: blur(8px);
+  animation: fadeDown 0.8s ease 0.3s both;
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-h1 {
+  font-size: clamp(26px, 4.5vw, 62px);
+  font-weight: 900; line-height: 1.28;
+  background: linear-gradient(145deg, #ffffff 0%, #a7f3d0 40%, #fbbf24 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 28px; max-width: 920px;
+  animation: fadeUp 0.9s ease 0.5s both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-meta   { font-size: clamp(14px, 1.7vw, 18px); color: rgba(148,163,184,0.88); margin-bottom: 14px; line-height: 1.7; animation: fadeUp 0.9s ease 0.7s both; }
+.hero-attn   { font-size: clamp(15px, 1.7vw, 20px); color: #fbbf24; font-weight: 700; margin-bottom: 8px; animation: fadeUp 0.9s ease 0.85s both; }
+.hero-credit { font-size: clamp(13px, 1.3vw, 16px); color: rgba(52,211,153,0.8); font-weight: 500; margin-bottom: 64px; animation: fadeUp 0.9s ease 1s both; }
+.scroll-cta {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: rgba(52,211,153,0.75); font-size: 13px; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  animation: bounceCta 2.5s ease-in-out infinite, fadeUp 0.9s ease 1.2s both;
+}
+@keyframes bounceCta {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+.scroll-ring {
+  width: 40px; height: 40px;
+  border: 2px solid rgba(52,211,153,0.45); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+/* =================== DIVIDERS =================== */
+.section-div { height: 1px; background: linear-gradient(90deg, transparent, rgba(52,211,153,0.25), transparent); }
+/* =================== SECTIONS =================== */
+.sec { padding: 96px 0; position: relative; }
+.sec-dark    { background: #0f172a; }
+.sec-darker  { background: #020617; }
+.sec-emerald { background: linear-gradient(180deg, #0f172a 0%, #021f15 50%, #0f172a 100%); }
+.ctr { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+.eyebrow { font-size: 11.5px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #34d399; margin-bottom: 14px; }
+.sec-title { font-size: clamp(26px, 3.2vw, 46px); font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 20px; }
+.sec-sub { font-size: clamp(14px, 1.55vw, 17px); color: rgba(148,163,184,0.85); line-height: 1.95; max-width: 720px; }
+/* =================== GLASS CARD =================== */
+.g-card {
+  background: rgba(30,41,59,0.55);
+  border: 1px solid rgba(52,211,153,0.1);
+  border-radius: 20px; padding: 36px;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.g-card:hover {
+  border-color: rgba(52,211,153,0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 56px rgba(0,0,0,0.35), 0 0 32px rgba(52,211,153,0.07);
+}
+/* =================== ICON BOX =================== */
+.i-box {
+  width: 60px; height: 60px; flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(6,78,59,0.7), rgba(52,211,153,0.15));
+  border: 1px solid rgba(52,211,153,0.18); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.i-box-gold {
+  background: linear-gradient(135deg, rgba(120,53,15,0.5), rgba(251,191,36,0.18));
+  border-color: rgba(251,191,36,0.2);
+}
+/* =================== HYBRID CARDS =================== */
+.h-tag {
+  display: inline-block;
+  background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.22);
+  color: #34d399; border-radius: 6px;
+  padding: 3px 12px; font-size: 10.5px; font-weight: 800; letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.h-tag-gold { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.22); color: #fbbf24; }
+.feat-li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14.5px; color: rgba(203,213,225,0.85); line-height: 1.8;
+  margin-bottom: 10px;
+}
+.feat-dot { width: 7px; height: 7px; background: #34d399; border-radius: 50%; margin-top: 9px; flex-shrink: 0; }
+.feat-dot-gold { background: #fbbf24; }
+/* =================== MOODBOARD =================== */
+.mood-card {
+  position: relative; border-radius: 16px; overflow: hidden;
+  height: 270px; cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.mood-card::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(2,6,23,0.2) 0%, rgba(6,78,59,0.82) 100%);
+  transition: background 0.4s ease;
+}
+.mood-card:hover { transform: scale(1.035); box-shadow: 0 0 48px rgba(52,211,153,0.3); }
+.mood-card:hover::after { background: linear-gradient(180deg, rgba(2,6,23,0.05) 0%, rgba(6,78,59,0.9) 100%); }
+.mood-bg { position: absolute; inset: 0; z-index: 0; }
+.mood-txt { position: absolute; bottom: 0; right: 0; left: 0; padding: 22px; z-index: 2; }
+.mood-badge {
+  display: inline-block;
+  background: rgba(52,211,153,0.2); border: 1px solid rgba(52,211,153,0.4);
+  color: #34d399; border-radius: 4px; padding: 3px 10px;
+  font-size: 9.5px; font-weight: 800; letter-spacing: 1px; margin-bottom: 7px;
+}
+.mood-badge-gold { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.3); color: #fbbf24; }
+/* =================== TIMELINE =================== */
+.tl-wrap { max-width: 860px; margin: 0 auto; }
+.tl-item { position: relative; padding-right: 68px; margin-bottom: 44px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-item::before {
+  content: ''; position: absolute;
+  right: 21px; top: 52px; bottom: -48px;
+  width: 2px;
+  background: linear-gradient(180deg, #34d399 0%, rgba(52,211,153,0) 100%);
+}
+.tl-item:last-child::before { display: none; }
+.tl-num {
+  position: absolute; right: 0; top: 4px;
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, #064e3b, #34d399);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 17px; color: #fff; z-index: 2;
+}
+/* =================== VOICE CARDS =================== */
+.v-card {
+  background: rgba(15,23,42,0.8);
+  border: 2px solid rgba(52,211,153,0.12);
+  border-radius: 20px; padding: 32px;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s, background 0.3s;
+  position: relative;
+}
+.v-card:hover { border-color: rgba(52,211,153,0.3); transform: translateY(-4px); }
+.v-card.vc-active {
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(52,211,153,0.18), 0 24px 64px rgba(52,211,153,0.12);
+  background: rgba(6,78,59,0.18);
+}
+.v-tag { display: inline-block; border-radius: 4px; padding: 3px 11px; font-size: 9.5px; font-weight: 800; letter-spacing: 1px; margin-bottom: 10px; }
+.v-tag-1 { background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.22); color: #34d399; }
+.v-tag-2 { background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.22); color: #fbbf24; }
+.v-tag-3 { background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.22); color: #38bdf8; }
+/* =================== AUDIO PLAYER =================== */
+.a-player {
+  background: rgba(2,6,23,0.55);
+  border: 1px solid rgba(52,211,153,0.14);
+  border-radius: 12px; padding: 15px; margin: 18px 0;
+}
+.a-lbl { font-size: 10.5px; color: rgba(52,211,153,0.7); margin-bottom: 10px; font-weight: 700; letter-spacing: 1px; }
+.a-row { display: flex; align-items: center; gap: 0; }
+.a-play {
+  width: 42px; height: 42px; flex-shrink: 0;
+  background: linear-gradient(135deg, #064e3b, #34d399);
+  border-radius: 50%; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.a-play:hover { transform: scale(1.1); box-shadow: 0 0 18px rgba(52,211,153,0.4); }
+.a-play-gold  { background: linear-gradient(135deg, #78350f, #fbbf24); }
+.a-play-blue  { background: linear-gradient(135deg, #0c4a6e, #38bdf8); }
+.a-track {
+  flex: 1; height: 4px; margin: 0 12px;
+  background: rgba(52,211,153,0.14); border-radius: 100px;
+  cursor: pointer; position: relative;
+}
+.a-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, #34d399, #fbbf24); transition: width 0.1s linear; }
+.a-fill-gold { background: linear-gradient(90deg, #fbbf24, #f97316); }
+.a-fill-blue { background: linear-gradient(90deg, #38bdf8, #818cf8); }
+.a-time { font-size: 11px; color: rgba(148,163,184,0.6); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+/* =================== VOICE BUTTONS =================== */
+.v-btn-port {
+  display: flex; width: 100%; justify-content: center; align-items: center; gap: 8px;
+  background: rgba(15,23,42,0.7); border: 1px solid rgba(251,191,36,0.28);
+  color: #fbbf24; border-radius: 10px; padding: 12px 20px;
+  font-size: 13px; font-weight: 600; font-family: 'Cairo', sans-serif;
+  text-decoration: none; transition: all 0.25s; margin-bottom: 14px;
+  cursor: pointer;
+}
+.v-btn-port:hover { border-color: rgba(251,191,36,0.55); background: rgba(251,191,36,0.08); transform: scale(1.01); }
+.v-btn-sel {
+  display: flex; width: 100%; justify-content: center; align-items: center; gap: 8px;
+  background: rgba(6,78,59,0.28); border: 1px solid rgba(52,211,153,0.24);
+  color: #34d399; border-radius: 100px; padding: 11px 20px;
+  font-size: 13px; font-weight: 700; font-family: 'Cairo', sans-serif;
+  cursor: pointer; transition: all 0.25s;
+}
+.v-btn-sel:hover { background: rgba(6,78,59,0.5); border-color: rgba(52,211,153,0.5); }
+.vc-active .v-btn-sel { background: linear-gradient(90deg, #064e3b, #047857); border-color: #34d399; color: #fff; }
+.v-check {
+  width: 24px; height: 24px; flex-shrink: 0;
+  border: 2px solid rgba(52,211,153,0.3); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+.vc-active .v-check { background: #34d399; border-color: #34d399; }
+/* =================== SELECTION BANNER =================== */
+.s-banner {
+  position: fixed; top: 24px; left: 50%;
+  transform: translateX(-50%) translateY(-120px);
+  background: linear-gradient(90deg, #064e3b, #047857);
+  border: 1px solid #34d399; border-radius: 100px;
+  padding: 12px 32px; color: #fff;
+  font-size: 14px; font-weight: 700;
+  z-index: 9999;
+  transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 32px rgba(52,211,153,0.3), 0 2px 8px rgba(0,0,0,0.4);
+  white-space: nowrap;
+}
+.s-banner.show { transform: translateX(-50%) translateY(0); }
+/* =================== SPECS =================== */
+.spec-card {
+  text-align: center; padding: 32px 20px;
+  background: rgba(15,23,42,0.6);
+  border: 1px solid rgba(52,211,153,0.1); border-radius: 16px;
+  transition: all 0.3s;
+}
+.spec-card:hover { border-color: rgba(52,211,153,0.28); background: rgba(6,78,59,0.14); transform: translateY(-3px); }
+.spec-n { font-size: 42px; font-weight: 900; color: #34d399; line-height: 1; margin-bottom: 8px; }
+.spec-l { font-size: 13.5px; color: rgba(148,163,184,0.8); font-weight: 500; line-height: 1.6; }
+/* =================== DRONE BLOCK =================== */
+.drone-blk {
+  background: rgba(6,78,59,0.13);
+  border: 1px solid rgba(52,211,153,0.18);
+  border-radius: 20px; padding: 36px;
+  display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap;
+}
+/* =================== FINANCIAL TABLE =================== */
+.fin-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+.fin-table thead th {
+  padding: 14px 22px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+  color: #34d399; border-bottom: 2px solid rgba(52,211,153,0.18); text-align: right;
+}
+html[dir="ltr"] .fin-table thead th { text-align: left; }
+.fin-table tbody tr { background: rgba(30,41,59,0.45); transition: background 0.2s; }
+.fin-table tbody tr:hover { background: rgba(6,78,59,0.2); }
+.fin-table tbody td { padding: 18px 22px; font-size: 14.5px; color: rgba(226,232,240,0.9); line-height: 1.7; border: none; }
+
+html[dir="rtl"] .fin-table tbody td:first-child { border-radius: 0 12px 12px 0; }
+html[dir="rtl"] .fin-table tbody td:last-child  { border-radius: 12px 0 0 12px; text-align: left; }
+html[dir="ltr"] .fin-table tbody td:first-child { border-radius: 12px 0 0 12px; }
+html[dir="ltr"] .fin-table tbody td:last-child  { border-radius: 0 12px 12px 0; text-align: right; }
+
+.p-val { font-size: 22px; font-weight: 800; color: #34d399; }
+.p-cur { font-size: 13px; font-weight: 700; color: rgba(52,211,153,0.65); margin-right: 4px; }
+.avt { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; color: #fff; flex-shrink: 0; }
+/* =================== TOTAL CARD =================== */
+.total-crd {
+  background: linear-gradient(135deg, #011a11 0%, #064e3b 55%, #047857 100%);
+  border: 1px solid rgba(52,211,153,0.38);
+  border-radius: 22px; padding: 44px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 14px; gap: 32px;
+}
+.tot-lbl { font-size: clamp(15px, 1.7vw, 18px); font-weight: 700; color: #fff; line-height: 1.65; max-width: 420px; }
+.tot-sub { font-size: 13px; color: rgba(52,211,153,0.7); margin-top: 8px; line-height: 1.7; }
+.tot-price { font-size: clamp(52px, 7vw, 88px); font-weight: 900; color: #fbbf24; line-height: 1; }
+.tot-unit  { font-size: clamp(18px, 2.5vw, 28px); font-weight: 700; color: rgba(251,191,36,0.65); margin-top: 4px; }
+/* =================== BUTTONS =================== */
+.btn-p {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(90deg, #064e3b, #047857);
+  color: #fff; border-radius: 12px; padding: 16px 32px;
+  font-size: 16px; font-weight: 700; font-family: 'Cairo', sans-serif;
+  text-decoration: none; border: 1px solid rgba(52,211,153,0.28);
+  transition: all 0.25s; cursor: pointer;
+}
+.btn-p:hover { transform: scale(1.022) translateY(-2px); box-shadow: 0 10px 32px rgba(6,78,59,0.5); background: linear-gradient(90deg, #047857, #059669); }
+.btn-glass {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: rgba(52,211,153,0.07); backdrop-filter: blur(20px);
+  border: 2px solid rgba(52,211,153,0.38); color: #34d399;
+  border-radius: 100px; padding: 18px 44px;
+  font-size: 16.5px; font-weight: 700; font-family: 'Cairo', sans-serif;
+  text-decoration: none; cursor: pointer; transition: all 0.3s;
+}
+.btn-glass:hover { transform: scale(1.022) translateY(-2px); background: rgba(52,211,153,0.13); border-color: rgba(52,211,153,0.65); box-shadow: 0 0 44px rgba(52,211,153,0.2); }
+/* =================== FOOTER =================== */
+.footer { background: #020617; padding: 56px 0 36px; border-top: 1px solid rgba(52,211,153,0.1); }
+/* =================== RESPONSIVE =================== */
+@media (max-width: 1024px) {
+  .total-crd { flex-direction: column; align-items: flex-start; }
+  html[dir="rtl"] .tot-right { border-top: 1px solid rgba(52,211,153,0.15); padding-top: 28px; text-align: left; }
+  html[dir="ltr"] .tot-right { border-top: 1px solid rgba(52,211,153,0.15); padding-top: 28px; text-align: right; }
+}
+@media (max-width: 768px) {
+  .navbar  { padding: 16px 20px; flex-direction: column; gap: 14px; }
+  .ctr     { padding: 0 20px; }
+  .hero-content { padding: 40px 20px 36px; }
+  .sec { padding: 64px 0; }
+  .g-card  { padding: 24px; }
+  .v-card  { padding: 22px; }
+  .total-crd { padding: 28px 20px; }
+  .btn-glass { padding: 15px 28px; font-size: 14.5px; }
+  .drone-blk { padding: 24px; }
+}
+@media (max-width: 640px) {
+  html[dir="rtl"] .tl-item { padding-right: 52px; padding-left: 0; }
+  html[dir="ltr"] .tl-item { padding-left: 52px; padding-right: 0; }
+  html[dir="rtl"] .tl-num  { right: 0; left: auto; }
+  html[dir="ltr"] .tl-num  { left: 0; right: auto; }
+  .tl-num  { width: 36px; height: 36px; font-size: 14px; }
+}
+/* grid helpers */
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 28px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+@media (max-width: 1024px) { .g3 { grid-template-columns: repeat(2,1fr); } .g4 { grid-template-columns: repeat(2,1fr); } .portfolio-grid { grid-template-columns: repeat(2,1fr) !important; } }
+@media (max-width: 640px)  { .g2, .g3 { grid-template-columns: 1fr; } .g4 { grid-template-columns: repeat(2,1fr); } .portfolio-grid { grid-template-columns: 1fr !important; } }
+
+/* Lang switcher style */
+.lang-btn {
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.3);
+  color: #34d399;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.lang-btn:hover {
+  background: #34d399;
+  color: #020617;
+  box-shadow: 0 0 12px rgba(52,211,153,0.4);
+}
+/* Alignment Fixes for LTR */
+html[dir="ltr"] .tl-item { padding-left: 68px; padding-right: 0; }
+html[dir="ltr"] .tl-item::before { left: 21px; right: auto; }
+html[dir="ltr"] .tl-num { left: 0; right: auto; }
+html[dir="ltr"] .g-card { margin-left: 16px; margin-right: 0; }
+html[dir="ltr"] .tot-right { text-align: right; }
+</style>
+</head>
+<body>
+<div style="background:linear-gradient(90deg,#011a11,#064e3b);border-bottom:1px solid rgba(52,211,153,0.2);padding:11px 48px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;">
+  <span data-i18n="top_bar_title" style="font-size:10.5px;font-weight:800;color:rgba(52,211,153,0.65);letter-spacing:2px;text-transform:uppercase;white-space:nowrap;">يستجيب هذا العرض لكافة الاشتراطات والمتطلبات ·</span>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+    <span style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(203,213,225,0.8);font-weight:600;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="top_nav_1">المنهجية الإبداعية وأسلوب العمل</span></span>
+    <span style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(203,213,225,0.8);font-weight:600;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="top_nav_2">الجدول الزمني للتسليم</span></span>
+    <span style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(203,213,225,0.8);font-weight:600;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="top_nav_3">التحليل المالي المفصّل</span></span>
+    <span style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(203,213,225,0.8);font-weight:600;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="top_nav_4">محفظة الأعمال السابقة</span></span>
+    <span style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(203,213,225,0.8);font-weight:600;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="top_nav_5">خيارات إنتاجية إضافية</span></span>
+  </div>
+</div>
+<section class="hero-wrap" id="hero">
+  <svg class="hero-canvas-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="hglow" cx="50%" cy="45%" r="55%">
+        <stop offset="0%"   stop-color="#064e3b" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="blur2"><feGaussianBlur stdDeviation="2"/></filter>
+    </defs>
+    <rect width="1440" height="900" fill="url(#hglow)"/>
+    <path class="net-line net-line-1" d="M 80 220 C 280 80 580 320 820 180 S 1200 320 1400 200" stroke="#34d399" stroke-width="1.2" fill="none" opacity="0.45"/>
+    <path class="net-line net-line-2" d="M 40 560 C 300 440 600 680 900 500 S 1250 620 1430 540" stroke="#34d399" stroke-width="0.9" fill="none" opacity="0.35"/>
+    <path class="net-line net-line-3" d="M 200 720 C 450 600 700 800 1000 660 S 1300 760 1440 700" stroke="#fbbf24" stroke-width="0.7" fill="none" opacity="0.25"/>
+    <path class="net-line net-line-4" d="M 100 380 C 360 260 660 460 960 340 S 1280 480 1440 400" stroke="#34d399" stroke-width="0.8" fill="none" opacity="0.3"/>
+    <g style="transform-origin:720px 450px">
+      <circle class="orbit-ring"  cx="720" cy="450" r="130" stroke="#064e3b" stroke-width="1.5" fill="none" opacity="0.35"/>
+    </g>
+    <g style="transform-origin:720px 450px">
+      <circle class="orbit-ring-r" cx="720" cy="450" r="210" stroke="#34d399" stroke-width="0.7" fill="none" stroke-dasharray="12 18" opacity="0.2"/>
+    </g>
+    <g style="transform-origin:720px 450px">
+      <circle class="orbit-ring"  cx="720" cy="450" r="310" stroke="#064e3b" stroke-width="0.5" fill="none" stroke-dasharray="6 24" opacity="0.12"/>
+    </g>
+    <circle class="pulse-node" cx="720" cy="450" r="4" fill="#34d399" filter="url(#blur2)"/>
+    <circle class="pulse-node" cx="820" cy="180" r="3" fill="#34d399"/>
+    <circle class="pulse-node" cx="300" cy="560" r="3" fill="#fbbf24"/>
+    <circle class="pulse-node" cx="1100" cy="340" r="4" fill="#34d399"/>
+    <circle class="pulse-node" cx="550" cy="720" r="3" fill="#34d399"/>
+    <circle cx="720" cy="450" r="5" fill="#34d399" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="r"       values="5;7;5"     dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="820" cy="180" r="3" fill="#34d399" opacity="0.5">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="300" cy="320" r="3" fill="#fbbf24" opacity="0.4">
+      <animate attributeName="opacity" values="0.3;0.65;0.3" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1200" cy="560" r="4" fill="#34d399" opacity="0.35">
+      <animate attributeName="r"       values="4;9;4"   dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.35;0.6;0.35" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <line x1="360"  y1="0" x2="360"  y2="900" stroke="#34d399" stroke-width="0.4" opacity="0.04"/>
+    <line x1="720"  y1="0" x2="720"  y2="900" stroke="#34d399" stroke-width="0.4" opacity="0.04"/>
+    <line x1="1080" y1="0" x2="1080" y2="900" stroke="#34d399" stroke-width="0.4" opacity="0.04"/>
+    <line x1="0" y1="300" x2="1440" y2="300"  stroke="#34d399" stroke-width="0.4" opacity="0.04"/>
+    <line x1="0" y1="600" x2="1440" y2="600"  stroke="#34d399" stroke-width="0.4" opacity="0.04"/>
+    <g class="data-stream" opacity="0.35">
+      <rect x="380" y="120" width="2" height="30" rx="1" fill="#34d399"/>
+    </g>
+    <g class="data-stream" opacity="0.25">
+      <rect x="960" y="280" width="2" height="22" rx="1" fill="#fbbf24"/>
+    </g>
+    <g class="data-stream" opacity="0.3">
+      <rect x="1200" y="180" width="2" height="28" rx="1" fill="#34d399"/>
+    </g>
+  </svg>
+  <nav class="navbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L4 7v5c0 4.6 3.5 8.9 8 9.9 4.5-1 8-5.3 8-9.9V7l-8-5z" fill="rgba(255,255,255,0.95)"/>
+          <path d="M9 12l2 2.5 4-5" stroke="#064e3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:800;color:#fff;line-height:1.2;">MTCIT NetZero Response</div>
+        <div style="font-size:11px;color:rgba(52,211,153,0.7);font-weight:500;">Creative Agency Proposal · ESG 2025</div>
+      </div>
+    </div>
+    
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button class="lang-btn" id="langSwitch" onclick="toggleLanguage()">English</button>
+      <div style="display:flex;align-items:center;gap:8px;background:rgba(6,78,59,0.25);border:1px solid rgba(52,211,153,0.2);border-radius:100px;padding:7px 16px;">
+        <div class="live-dot"></div>
+        <span data-i18n="confidential_tag" style="font-size:11.5px;color:rgba(52,211,153,0.85);font-weight:700;">وثيقة حصرية · سرية</span>
+      </div>
+    </div>
+
+    <div class="hidden md:flex" style="display:flex;align-items:center;gap:20px;">
+      <a href="#vision"    data-i18n="nav_vision"    style="font-size:13px;color:rgba(148,163,184,0.75);text-decoration:none;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='rgba(148,163,184,0.75)'">الرؤية</a>
+      <a href="#pipeline"  data-i18n="nav_pipeline"  style="font-size:13px;color:rgba(148,163,184,0.75);text-decoration:none;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='rgba(148,163,184,0.75)'">المراحل</a>
+      <a href="#voiceover" data-i18n="nav_voice"     style="font-size:13px;color:rgba(148,163,184,0.75);text-decoration:none;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='rgba(148,163,184,0.75)'">الصوت</a>
+      <a href="#financial" data-i18n="nav_finance"   style="font-size:13px;color:rgba(148,163,184,0.75);text-decoration:none;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#34d399'" onmouseout="this.style.color='rgba(148,163,184,0.75)'">المالية</a>
+    </div>
+  </nav>
+  <div class="hero-content">
+    <div class="super-badge">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="#34d399">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+      <span data-i18n="hero_badge">استجابة إبداعية حصرية ومقترح إنتاج متكامل</span>
+    </div>
+    <h1 class="hero-h1" id="main-title-h1">
+      العرض الفني والمالي الرقمي<br/>
+      لإنتاج فيديو تقرير الاستدامة الأول<br/>
+      <span style="background:linear-gradient(90deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:0.62em;letter-spacing:2px;">ESG 2025</span>
+    </h1>
+    <p class="hero-meta" id="main-meta-p">
+      مُعد خصيصاً لوزارة النقل والاتصالات وتقنية المعلومات<br/>
+      مكتب صافي الانبعاثات الصفري الكربونية
+    </p>
+    <p class="hero-attn" id="main-attn-p">✦ &nbsp;عناية الفاضلة / جهينة الشامسية &nbsp;·&nbsp; مديرة المشاريع</p>
+    <p class="hero-credit" id="main-credit-p">
+      تطوير وإخراج: المخرج ومنتج المحتوى الإبداعي / عبدالله الربيعي
+    </p>
+    <a class="scroll-cta" href="#vision">
+      <span data-i18n="hero_scroll_text">اكتشف الأبعاد الإبداعية للمشروع</span>
+      <div class="scroll-ring">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5">
+          <path d="M7 10l5 5 5-5"/>
+        </svg>
+      </div>
+    </a>
+  </div>
+</section>
+<section class="sec sec-darker" id="vision">
+  <div class="ctr">
+    <div class="reveal" style="text-align:center;margin-bottom:68px;">
+      <div class="eyebrow" data-i18n="v_eyebrow">الفلسفة الفنية والمفهوم الإبداعي</div>
+      <h2 class="sec-title" data-i18n="v_title">المنهجية الهجينة المتكاملة</h2>
+      <p class="sec-sub" id="v-sub-p" style="margin:0 auto;">
+        تقرير ESG 2025 البالغ <strong style="color:#34d399;">50 صفحة</strong> يحمل كثافة بيانية استثنائية — انبعاثات كربونية، أطر مخاطر معقدة، جداول هيكلية، ومؤشرات بنية تحتية شاملة. 
+        مهمتنا الإبداعية: تحويل وصياغة هذا المحتوى الثقيل إلى سرد سينمائي تنفيذي بمدة <strong style="color:#fbbf24;">3–4 دقائق</strong> ذو تأثير بالغ يُحدث أثراً قيادياً استثنائياً ويُعبّر عن عمق الالتزام البيئي لعُمان بأسلوب عالمي المستوى.
+      </p>
+    </div>
+    <div class="g2 reveal" style="margin-bottom:80px;">
+      <div class="g-card">
+        <div class="h-tag" data-i18n="v_card1_tag">البُعد الرقمي / Digital Dimension</div>
+        <div class="i-box" style="margin-bottom:18px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.6">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <h3 style="font-size:21px;font-weight:800;color:#fff;margin-bottom:10px;" data-i18n="v_card1_title">الرسوم البيانية والموشن جرافيكس</h3>
+        <p style="color:rgba(148,163,184,0.85);font-size:14.5px;line-height:1.85;margin-bottom:22px;" data-i18n="v_card1_desc">
+          منظومة بصرية رقمية متكاملة تحوّل أرقام تقرير الاستدامة إلى رسائل حركية دقيقة تُهيمن على الانتباه وتُحرك المشاعر التنفيذية.
+        </p>
+        <ul style="list-style:none;padding:0;">
+          <li class="feat-li"><span class="feat-dot"></span><span data-i18n="v_card1_li1">تصور بيانات الكربون بتقنية 2D/3D متقدمة ومخصصة</span></li>
+          <li class="feat-li"><span class="feat-dot"></span><span data-i18n="v_card1_li2">إنفوجرافيكس ديناميكية مبنية لكل مؤشر أداء رئيسي</span></li>
+          <li class="feat-li"><span class="feat-dot"></span><span data-i18n="v_card1_li3">خرائط بيانات تفاعلية لشبكات المشاريع الوطنية</span></li>
+          <li class="feat-li"><span class="feat-dot"></span><span data-i18n="v_card1_li4">أيقونوجرافيا حركية متسقة مع الهوية البصرية للوزارة</span></li>
+        </ul>
+      </div>
+      <div class="g-card">
+        <div class="h-tag h-tag-gold" data-i18n="v_card2_tag">البُعد الإنساني / Human Dimension</div>
+        <div class="i-box i-box-gold" style="margin-bottom:18px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.6">
+            <circle cx="12" cy="7" r="4"/><path d="M5.5 21v-1.5a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5V21"/>
+          </svg>
+        </div>
+        <h3 style="font-size:21px;font-weight:800;color:#fff;margin-bottom:10px;" data-i18n="v_card2_title">التصوير الميداني والواقعي</h3>
+        <p style="color:rgba(148,163,184,0.85);font-size:14.5px;line-height:1.85;margin-bottom:22px;" data-i18n="v_card2_desc">
+          توثيق سينمائي فاخر يضع المشاهد في قلب التحول المؤسسي الحقيقي ويُجسّد الإنجازات البيئية لعُمان بعدسة احترافية على أرض الواقع.
+        </p>
+        <ul style="list-style:none;padding:0;">
+          <li class="feat-li"><span class="feat-dot feat-dot-gold"></span><span data-i18n="v_card2_li1">تصوير معماري يُبرز مقياس المشاريع الوطنية الكبرى</span></li>
+          <li class="feat-li"><span class="feat-dot feat-dot-gold"></span><span data-i18n="v_card2_li2">لقطات بيئية تعكس عمق الالتزام بالاستدامة الفعلية</span></li>
+          <li class="feat-li"><span class="feat-dot feat-dot-gold"></span><span data-i18n="v_card2_li3">توثيق البنية التحتية العُمانية بمعايير عالمية</span></li>
+          <li class="feat-li"><span class="feat-dot feat-dot-gold"></span><span data-i18n="v_card2_li4">إضاءة سينمائية احترافية وزوايا تصوير إبداعية</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="reveal">
+      <div style="text-align:center;margin-bottom:36px;">
+        <div class="eyebrow" data-i18n="m_eyebrow">التصور المبدئي البصري</div>
+        <h3 class="sec-title" style="font-size:clamp(22px,2.6vw,36px);" data-i18n="m_title">اللوحة الإبداعية والتصور المبدئي</h3>
+      </div>
+      <div class="g4">
+        <div class="mood-card">
+          <div class="mood-bg" style="background: linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(15, 23, 42, 0.15) 100%), url('02.jpeg') no-repeat center center; background-size: cover;">
+          </div>
+          <div class="mood-txt">
+            <span class="mood-badge">VISUAL STYLE</span>
+            <h4 style="font-size:17px;font-weight:800;color:#fff;" data-i18n="m_c1_title">الأسلوب البصري البسيط</h4>
+            <p style="font-size:12px;color:rgba(255,255,255,0.95);margin-top:4px;text-shadow: 0 2px 4px rgba(0,0,0,0.8);" data-i18n="m_c1_desc">بصمة رقمية نظيفة تضع البيانات في صدارة المشهد</p>
+          </div>
+        </div>
+        <div class="mood-card">
+          <div class="mood-bg" style="background: linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(15, 23, 42, 0.15) 100%), url('04.jpeg') no-repeat center center; background-size: cover;">
+          </div>
+          <div class="mood-txt">
+            <span class="mood-badge">CREATIVE HYBRID APPROACH</span>
+            <h4 style="font-size:17px;font-weight:800;color:#fff;" data-i18n="m_c2_title">أسلوب ابداعي هجين</h4>
+            <p style="font-size:12px;color:rgba(255,255,255,0.95);margin-top:4px;text-shadow: 0 2px 4px rgba(0,0,0,0.8);" data-i18n="m_c2_desc">نهج مرئي يجمع بين الرسوم المتحركة والمشاهد الحقيقية، لضمان إيصال الرسالة بأسلوب مباشر وفعّال</p>
+          </div>
+        </div>
+        <div class="mood-card">
+          <div class="mood-bg" style="background: linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(15, 23, 42, 0.15) 100%), url('06.jpeg') no-repeat center center; background-size: cover;">
+          </div>
+          <div class="mood-txt">
+            <span class="mood-badge">DATA MAPS</span>
+            <h4 style="font-size:17px;font-weight:800;color:#fff;" data-i18n="m_c3_title">خرائط البيانات التفاعلية</h4>
+            <p style="font-size:12px;color:rgba(255,255,255,0.95);margin-top:4px;text-shadow: 0 2px 4px rgba(0,0,0,0.8);" data-i18n="m_c3_desc">تمثيل بصري للشبكات والعلاقات المؤسسية الحيّة</p>
+          </div>
+        </div>
+        <div class="mood-card">
+          <div class="mood-bg" style="background: linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(15, 23, 42, 0.15) 100%), url('05.jpeg') no-repeat center center; background-size: cover;">
+          </div>
+          <div class="mood-txt">
+            <span class="mood-badge mood-badge-gold">CINEMATIC DEPTH</span>
+            <h4 style="font-size:17px;font-weight:800;color:#fff;" data-i18n="m_c4_title">العمق السينمائي</h4>
+            <p style="font-size:12px;color:rgba(255,255,255,0.95);margin-top:4px;text-shadow: 0 2px 4px rgba(0,0,0,0.8);" data-i18n="m_c4_desc">طبقات بصرية عميقة تمنح الإحساس السينمائي الحصري</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:64px;">
+        <div style="text-align:center;margin-bottom:32px;">
+          <div class="eyebrow" data-i18n="p_eyebrow">معرض الأعمال السابقة</div>
+          <h3 class="sec-title" style="font-size:clamp(20px,2.4vw,32px);" data-i18n="p_title">نماذج من أعمال المخرج والمنتج الإبداعي</h3>
+          <p style="font-size:14px;color:rgba(148,163,184,0.75);max-width:600px;margin:0 auto;line-height:1.8;" data-i18n="p_sub">
+            مجموعة مختارة من الأعمال الإنتاجية السابقة في مجال الفيديو المؤسسي والموشن جرافيكس والتصوير الميداني
+          </p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;" class="portfolio-grid">
+          
+          <div style="position:relative;border-radius:14px;overflow:hidden;height:200px;background:linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(15, 23, 42, 0.15) 100%), url('11.png') no-repeat center center; background-size: cover; border:1px solid rgba(52,211,153,0.15);cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(52,211,153,0.4)';this.style.transform='scale(1.02)'" onmouseout="this.style.borderColor='rgba(52,211,153,0.15)';this.style.transform=''">
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,23,0.5) 0%,transparent 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;z-index:2;">
+              <div style="font-size:11px;font-weight:800;color:#34d399;letter-spacing:1px;margin-bottom:4px;text-shadow: 0 1px 3px rgba(0,0,0,0.8);">CORPORATE VIDEO</div>
+              <div style="font-size:14px;font-weight:700;color:#fff;text-shadow: 0 1px 3px rgba(0,0,0,0.8);" data-i18n="p_c1_title">فيديو مؤسسي — تقرير سنوي</div>
+            </div>
+            <div style="position:absolute;top:12px;right:12px;z-index:3;background:rgba(2,6,23,0.4);border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:4px 10px;font-size:10px;color:#34d399;font-weight:700;backdrop-filter: blur(4px);" data-i18n="sample_tag">عينة من أعمالنا</div>
+          </div>
+          <div style="position:relative;border-radius:14px;overflow:hidden;height:200px;background:linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(15, 23, 42, 0.15) 100%), url('13.png') no-repeat center center; background-size: cover; border:1px solid rgba(251,191,36,0.15);cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(251,191,36,0.4)';this.style.transform='scale(1.02)'" onmouseout="this.style.borderColor='rgba(251,191,36,0.15)';this.style.transform=''">
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,23,0.5) 0%,transparent 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;z-index:2;">
+              <div style="font-size:11px;font-weight:800;color:#fbbf24;letter-spacing:1px;margin-bottom:4px;text-shadow: 0 1px 3px rgba(0,0,0,0.8);">MOTION GRAPHICS</div>
+              <div style="font-size:14px;font-weight:700;color:#fff;text-shadow: 0 1px 3px rgba(0,0,0,0.8);" data-i18n="p_c2_title">إنفوجرافيكس وتحريك بيانات</div>
+            </div>
+            <div style="position:absolute;top:12px;right:12px;z-index:3;background:rgba(2,6,23,0.4);border:1px solid rgba(251,191,36,0.3);border-radius:6px;padding:4px 10px;font-size:10px;color:#fbbf24;font-weight:700;backdrop-filter: blur(4px);" data-i18n="sample_tag">عينة من أعمالنا</div>
+          </div>
+          <div style="position:relative;border-radius:14px;overflow:hidden;height:200px;background:linear-gradient(180deg, rgba(2, 6, 23, 0.02) 0%, rgba(15, 23, 42, 0.15) 100%), url('12.png') no-repeat center center; background-size: cover; border:1px solid rgba(52,211,153,0.15);cursor:pointer;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(52,211,153,0.4)';this.style.transform='scale(1.02)'" onmouseout="this.style.borderColor='rgba(52,211,153,0.15)';this.style.transform=''">
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,23,0.5) 0%,transparent 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;z-index:2;">
+              <div style="font-size:11px;font-weight:800;color:#34d399;letter-spacing:1px;margin-bottom:4px;text-shadow: 0 1px 3px rgba(0,0,0,0.8);">ESG / SUSTAINABILITY</div>
+              <div style="font-size:14px;font-weight:700;color:#fff;text-shadow: 0 1px 3px rgba(0,0,0,0.8);" data-i18n="p_c3_title">محتوى استدامة وتقارير بيئية</div>
+            </div>
+            <div style="position:absolute;top:12px;right:12px;z-index:3;background:rgba(2,6,23,0.4);border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:4px 10px;font-size:10px;color:#34d399;font-weight:700;backdrop-filter: blur(4px);" data-i18n="sample_tag">عينة من أعمالنا</div>
+          </div>
+        </div>
+        <div style="text-align:center;">
+          <a href="https://drive.google.com/drive/folders/1iCha8EAdpHElGJxfV_-t22AkLfcXVH7L?usp=sharing" class="btn-glass" style="font-size:15px;padding:16px 40px;" data-i18n="p_btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            استعراض الأعمال الإبداعية الكاملة للمخرج والمنتج عبدالله الربيعي
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-div"></div>
+<section class="sec sec-darker" id="timeline">
+  <div class="ctr">
+    <div class="reveal" style="text-align:center;margin-bottom:68px;">
+      <div class="eyebrow" data-i18n="t_eyebrow">الجدول الزمني المقترح</div>
+      <h2 class="sec-title" data-i18n="t_title">خطة التسليم من السيناريو إلى النسخة النهائية</h2>
+      <p class="sec-sub" data-i18n="t_sub" style="margin:0 auto;">
+        جدول زمني واقعي ومحكم يضمن تسليم منتج إبداعي عالي الجودة في غضون شهر إلى شهر وعشرة أيام من تاريخ الاعتماد الرسمي للمشروع.
+      </p>
+    </div>
+    <div style="max-width:900px;margin:0 auto;position:relative;" id="timeline-flow-box">
+      <div style="position:absolute;right:28px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#34d399,rgba(52,211,153,0.05));z-index:0;" id="line-flow-indicator"></div>
+      
+      <div class="reveal" style="display:flex;gap:24px;align-items:flex-start;margin-bottom:40px;position:relative;z-index:1;">
+        <div style="flex-shrink:0;width:58px;height:58px;background:linear-gradient(135deg,#064e3b,#34d399);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(52,211,153,0.3);">
+          <span style="font-size:9px;font-weight:800;color:rgba(255,255,255,0.75);line-height:1.2;text-align:center;" data-i18n="t_days">أيام</span>
+          <span style="font-size:15px;font-weight:900;color:#fff;line-height:1;">1-5</span>
+        </div>
+        <div class="g-card" style="flex:1;padding:24px 28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+            <span class="h-tag" style="margin-bottom:0;" data-i18n="t_p1_tag">المرحلة ١ · Kickoff</span>
+            <span style="font-size:11.5px;color:rgba(52,211,153,0.65);font-weight:600;" data-i18n="t_p1_week">الأسبوع الأول</span>
+          </div>
+          <h4 style="font-size:17px;font-weight:800;color:#fff;margin-bottom:8px;" data-i18n="t_p1_title">استلام التقرير وهندسة القصة</h4>
+          <p style="font-size:14px;color:rgba(148,163,184,0.85);line-height:1.8;" data-i18n="t_p1_desc">استلام تقرير ESG 2025 كاملاً، قراءة وتحليل الـ 50 صفحة، استخلاص المحاور الرئيسية، وكتابة المسودة الأولى للسيناريو مع توزيع المشاهد البصرية.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="display:flex;gap:24px;align-items:flex-start;margin-bottom:40px;position:relative;z-index:1;">
+        <div style="flex-shrink:0;width:58px;height:58px;background:linear-gradient(135deg,#047857,#34d399);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(52,211,153,0.22);">
+          <span style="font-size:9px;font-weight:800;color:rgba(255,255,255,0.75);line-height:1.2;text-align:center;" data-i18n="t_days">أيام</span>
+          <span style="font-size:15px;font-weight:900;color:#fff;line-height:1;">6-10</span>
+        </div>
+        <div class="g-card" style="flex:1;padding:24px 28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+            <span class="h-tag" style="margin-bottom:0;" data-i18n="t_p2_tag">المرحلة ٢ · Approval</span>
+            <span style="font-size:11.5px;color:rgba(52,211,153,0.65);font-weight:600;" data-i18n="t_p2_week">الأسبوع الثاني</span>
+          </div>
+          <h4 style="font-size:17px;font-weight:800;color:#fff;margin-bottom:8px;" data-i18n="t_p2_title">اعتماد السيناريو والتخطيط الإنتاجي</h4>
+          <p style="font-size:14px;color:rgba(148,163,184,0.85);line-height:1.8;" data-i18n="t_p2_desc">عرض السيناريو النهائي على الوزارة لاعتماده، تحديد جدول التصوير الميداني، والتنسيق مع كادر التصوير وتحديد المواقع المستهدفة.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="display:flex;gap:24px;align-items:flex-start;margin-bottom:40px;position:relative;z-index:1;">
+        <div style="flex-shrink:0;width:58px;height:58px;background:linear-gradient(135deg,#064e3b,#059669);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(52,211,153,0.18);">
+          <span style="font-size:9px;font-weight:800;color:rgba(255,255,255,0.75);line-height:1.2;text-align:center;" data-i18n="t_days">أيام</span>
+          <span style="font-size:15px;font-weight:900;color:#fff;line-height:1;">11-18</span>
+        </div>
+        <div class="g-card" style="flex:1;padding:24px 28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+            <span class="h-tag" style="margin-bottom:0;" data-i18n="t_p3_tag">المرحلة ٣ · Production</span>
+            <span style="font-size:11.5px;color:rgba(52,211,153,0.65);font-weight:600;" data-i18n="t_p3_week">الأسبوع الثالث</span>
+          </div>
+          <h4 style="font-size:17px;font-weight:800;color:#fff;margin-bottom:8px;" data-i18n="t_p3_title">التصوير الميداني وتسجيل الصوت</h4>
+          <p style="font-size:14px;color:rgba(148,163,184,0.85);line-height:1.8;" data-i18n="t_p3_desc">تنفيذ جلسة التصوير الميداني في مواقع الوزارة، تسجيل التعليق الصوتي بالمعلق المختار، واستلام كافة المواد الخام جاهزة للمونتاج.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="display:flex;gap:24px;align-items:flex-start;margin-bottom:40px;position:relative;z-index:1;">
+        <div style="flex-shrink:0;width:58px;height:58px;background:linear-gradient(135deg,#78350f,#fbbf24);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(251,191,36,0.25);">
+          <span style="font-size:9px;font-weight:800;color:rgba(255,255,255,0.75);line-height:1.2;text-align:center;" data-i18n="t_days">أيام</span>
+          <span style="font-size:15px;font-weight:900;color:#fff;line-height:1;">19-32</span>
+        </div>
+        <div class="g-card" style="flex:1;padding:24px 28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+            <span class="h-tag h-tag-gold" style="margin-bottom:0;" data-i18n="t_p4_tag">المرحلة ٤ · Post-Production</span>
+            <span style="font-size:11.5px;color:rgba(251,191,36,0.65);font-weight:600;" data-i18n="t_p4_week">الأسبوعان الرابع والخامس</span>
+          </div>
+          <h4 style="font-size:17px;font-weight:800;color:#fff;margin-bottom:8px;" data-i18n="t_p4_title">التحريك والمونتاج والهندسة الصوتية</h4>
+          <p style="font-size:14px;color:rgba(148,163,184,0.85);line-height:1.8;" data-i18n="t_p4_desc">تصميم وتحريك الموشن جرافيكس والإنفوجرافيكس الكاملة، مونتاج الفيديو، دمج التعليق الصوتي والمؤثرات الصوتية والموسيقى الخلفية.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="display:flex;gap:24px;align-items:flex-start;position:relative;z-index:1;">
+        <div style="flex-shrink:0;width:58px;height:58px;background:linear-gradient(135deg,#34d399,#fbbf24);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(52,211,153,0.4);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div style="flex:1;background:linear-gradient(135deg,rgba(6,78,59,0.35),rgba(52,211,153,0.08));border:1px solid rgba(52,211,153,0.32);border-radius:20px;padding:24px 28px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+            <span class="h-tag" style="margin-bottom:0;background:rgba(52,211,153,0.18);border-color:rgba(52,211,153,0.38);" data-i18n="t_p5_tag">التسليم النهائي · Final Delivery</span>
+            <span style="font-size:11.5px;color:rgba(52,211,153,0.75);font-weight:700;" data-i18n="t_p5_week">يوم ٣٣–٤٠</span>
+          </div>
+          <h4 style="font-size:17px;font-weight:800;color:#fff;margin-bottom:8px;" data-i18n="t_p5_title">المراجعة والتسليم الرسمي</h4>
+          <p style="font-size:14px;color:rgba(148,163,184,0.85);line-height:1.8;">
+            <span data-i18n="t_p5_desc">عرض النسخة الأولى للمراجعة، تنفيذ التعديلات المطلوبة ضمن جولة مراجعة واحدة، والتسليم الرسمي للنسخة النهائية بجودة عالية وبكافة الصيغ الرقمية المطلوبة.</span>
+          </p>
+          <div style="display:flex;gap:14px;margin-top:16px;flex-wrap:wrap;">
+            <div style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.22);border-radius:10px;padding:9px 16px;display:flex;align-items:center;gap:8px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span style="font-size:13px;color:#34d399;font-weight:700;" data-i18n="t_total_duration">الإجمالي: شهر إلى شهر وعشرة أيام</span>
+            </div>
+            <div style="background:rgba(251,191,36,0.09);border:1px solid rgba(251,191,36,0.2);border-radius:10px;padding:9px 16px;display:flex;align-items:center;gap:8px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span style="font-size:13px;color:#fbbf24;font-weight:700;" data-i18n="t_video_duration">مدة الفيديو: 3–4 دقائق</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-div"></div>
+<section class="sec sec-dark" id="pipeline">
+  <div class="ctr">
+    <div class="reveal" style="text-align:center;margin-bottom:68px;">
+      <div class="eyebrow" data-i18n="scope_eyebrow">الهندسة الإنتاجية المتسلسلة</div>
+      <h2 class="sec-title" data-i18n="scope_title">نطاق العمل ومراحل الإنتاج</h2>
+      <p class="sec-sub" data-i18n="scope_sub" style="margin:0 auto;">
+        أربعة محاور إنتاجية متكاملة ومتتالية تضمن التسليم الاحترافي في كل مرحلة دون الإخلال بالتفاصيل الاستراتيجية.
+      </p>
+    </div>
+    <div class="tl-wrap">
+      
+      <div class="tl-item reveal">
+        <div class="tl-num">1</div>
+        <div class="g-card">
+          <div style="display:flex;align-items:flex-start;gap:18px;">
+            <div class="i-box" style="flex-shrink:0;width:52px;height:52px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.6">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>
+              </svg>
+            </div>
+            <div style="flex:1;">
+              <span class="h-tag" style="display:inline-block;margin-bottom:8px;">Data Storytelling &amp; Scriptwriting</span>
+              <h3 style="font-size:19px;font-weight:800;color:#fff;margin-bottom:10px;" data-i18n="scope_s1_title">هندسة القصة والبيانات وصياغة السيناريو</h3>
+              <p style="color:rgba(148,163,184,0.88);font-size:14.5px;line-height:1.9;" data-i18n="scope_s1_desc">
+                قراءة وفلترة الـ 50 صفحة وتلخيصها هندسياً دون الإخلال بالمضمون الاستراتيجي، وتحويل الأرقام الصعبة إلى نصوص حوارية وبصرية مشوقة تحدد بدقة ما يُسمع وما يُرى في كل ثانية من الفيديو.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-num">2</div>
+        <div class="g-card">
+          <div style="display:flex;align-items:flex-start;gap:18px;">
+            <div class="i-box" style="flex-shrink:0;width:52px;height:52px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.6">
+                <rect x="2" y="7" width="15" height="10" rx="2"/>
+                <path d="M17 11l5-3v8l-5-3"/>
+              </svg>
+            </div>
+            <div style="flex:1;">
+              <span class="h-tag" style="display:inline-block;margin-bottom:8px;">On-Site Cinematography &amp; Production</span>
+              <h3 style="font-size:19px;font-weight:800;color:#fff;margin-bottom:10px;" data-i18n="scope_s2_title">الإنتاج الميداني والتصوير المشترك</h3>
+              <p style="color:rgba(148,163,184,0.88);font-size:14.5px;line-height:1.9;" data-i18n="scope_s2_desc">
+                التخطيط الميداني الكامل، تحديد زوايا التصوير المعمارية لمشاريع الوزارة وتوثيق الإنجازات الحية بأسلوب سينمائي فاخر يعكس عظمة البنية التحتية العُمانية.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-num">3</div>
+        <div class="g-card">
+          <div style="display:flex;align-items:flex-start;gap:18px;">
+            <div class="i-box" style="flex-shrink:0;width:52px;height:52px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.6">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <div style="flex:1;">
+              <span class="h-tag" style="display:inline-block;margin-bottom:8px;">High-End Motion Graphics &amp; VFX</span>
+              <h3 style="font-size:19px;font-weight:800;color:#fff;margin-bottom:10px;" data-i18n="scope_s3_title">التحريك الرقمي والموشن جرافيكس الفاخر</h3>
+              <p style="color:rgba(148,163,184,0.88);font-size:14.5px;line-height:1.9;" data-i18n="scope_s3_desc">
+                بناء الهوية البصرية الحركية الخاصة بالوزارة، تصميم وتحريك الجداول البيانية المعقدة، وجعل الأرقام تتدفق بسلاسة بصرية فائقة الدقة وفق أعلى معايير صناعة الإنتاج العالمية.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal" style="margin-bottom:0;">
+        <div class="tl-num">4</div>
+        <div class="g-card">
+          <div style="display:flex;align-items:flex-start;gap:18px;">
+            <div class="i-box" style="flex-shrink:0;width:52px;height:52px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.6">
+                <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+              </svg>
+            </div>
+            <div style="flex:1;">
+              <span class="h-tag" style="display:inline-block;margin-bottom:8px;">Sound Design &amp; Immersive Mix</span>
+              <h3 style="font-size:19px;font-weight:800;color:#fff;margin-bottom:10px;" data-i18n="scope_s4_title">الهندسة الصوتية والماسترينج النهائي</h3>
+              <p style="color:rgba(148,163,184,0.88);font-size:14.5px;line-height:1.9;" data-i18n="scope_s4_desc">
+                معالجة وهندسة طبقات الصوت، تركيب المؤثرات الصوتية الدقيقة (SFX) لحركات الموشن جرافيكس، ومزج الموسيقى الخلفية الملهمة التي تعكس الابتكار والمستقبل الفاخر للسلطنة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-div"></div>
+<section class="sec sec-emerald" id="voiceover">
+  <div class="ctr">
+    <div class="reveal" style="text-align:center;margin-bottom:68px;">
+      <div class="eyebrow" data-i18n="v_options_eyebrow">خيارات التعليق الصوتي</div>
+      <h2 class="sec-title" data-i18n="v_options_title">ثلاثة معلقين مختلفون — اختر الأنسب لرسالتكم</h2>
+      <p class="sec-sub" data-i18n="v_options_sub" style="margin:0 auto;">
+        نقدم لكم ثلاثة معلقين صوتيين مختلفين بأساليب وشخصيات متباينة، لكل منهم خبرة احترافية عالية في الإنتاج المؤسسي — لكم حرية الاختيار بين أحدهم وفق طبيعة الرسالة وقناة النشر المستهدفة.
+      </p>
+    </div>
+    <div id="sBanner" class="s-banner">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a7f3d0" stroke-width="3">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+      <span id="sBannerText">تم الاختيار بنجاح</span>
+    </div>
+    <div class="g3 reveal" id="voiceGrid">
+      
+      <div class="v-card" id="vc1" onclick="selectVoice(1,'المعلق الأول — الأسلوب التنفيذي')">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#34d399;">١</div>
+            <div class="i-box" style="width:42px;height:42px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.6">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+              </svg>
+            </div>
+          </div>
+          <div class="v-check" id="vCheck1">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="transparent" stroke-width="3" id="vChkSvg1">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="v-tag v-tag-1">المعلق الأول · CORPORATE / EXECUTIVE</div>
+        <h3 style="font-size:17.5px;font-weight:800;color:#fff;margin-bottom:9px;" data-i18n="vo1_title">الأسلوب التنفيذي الرسمي</h3>
+        <p style="font-size:13.5px;color:rgba(148,163,184,0.85);line-height:1.85;margin-bottom:18px;" data-i18n="vo1_desc">
+          نبرة رسمية وقوية تعكس ثقل المؤسسة وريادتها — مثالية لعروض القيادة العليا، الموقع الرسمي، والمنصات الاستراتيجية للوزارة.
+        </p>
+        <div class="a-player">
+          <div class="a-lbl" data-i18n="listen_sample">▸ استمع للعينة الصوتية الافتراضية</div>
+          <div class="a-row">
+            <button class="a-play" id="aPlay1" onclick="togglePlay(event,1,90)">
+              <svg id="aIcon1" width="15" height="15" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <div class="a-track" id="aTrack1" onclick="seekTo(event,1,90)">
+              <div class="a-fill" id="aFill1" style="width:0%"></div>
+            </div>
+            <span class="a-time" id="aTime1">0:00 / 1:30</span>
+          </div>
+          <audio id="audio1" src="محمد.wav" preload="metadata"></audio>
+        </div>
+        <a href="https://www.instagram.com/moh_6006?igsh=MW15MTk5NmFmbmRwMg==" target="_blank" class="v-btn-port" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+          </svg>
+          <span data-i18n="view_portfolio">عرض محفظة الأعمال الصوتية الكاملة</span>
+        </a>
+        <button class="v-btn-sel" id="vSelBtn1" onclick="selectVoice(1,'المعلق الأول — الأسلوب التنفيذي');event.stopPropagation()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="4" fill="currentColor" id="vSelDot1" style="opacity:0"/>
+          </svg>
+          <span data-i18n="select_voice_btn">اختيار هذا المعلق</span>
+        </button>
+      </div>
+
+      <div class="v-card" id="vc2" onclick="selectVoice(2,'المعلق الثاني — الأسلوب الوثائقي')">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fbbf24;">٢</div>
+            <div class="i-box i-box-gold" style="width:42px;height:42px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.6">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+              </svg>
+            </div>
+          </div>
+          <div class="v-check" id="vCheck2">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="transparent" stroke-width="3" id="vChkSvg2">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="v-tag v-tag-2">المعلق الثاني · Inspirational Documentary</div>
+        <h3 style="font-size:17.5px;font-weight:800;color:#fff;margin-bottom:9px;" data-i18n="vo2_title">الأسلوب الوثائقي الملهم</h3>
+        <p style="font-size:13.5px;color:rgba(148,163,184,0.85);line-height:1.85;margin-bottom:18px;" data-i18n="vo2_desc">
+          نبرة دافئة وملهمة تركز على البُعد الإنساني والوطني — مثالية للعرض الدولي ومنصات التواصل البيئية والاجتماعية.
+        </p>
+        <div class="a-player" style="border-color:rgba(251,191,36,0.16);">
+          <div class="a-lbl" style="color:rgba(251,191,36,0.75);" data-i18n="listen_sample">▸ استمع للعينة الصوتية الافتراضية</div>
+          <div class="a-row">
+            <button class="a-play a-play-gold" id="aPlay2" onclick="togglePlay(event,2,105)">
+              <svg id="aIcon2" width="15" height="15" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <div class="a-track" id="aTrack2" onclick="seekTo(event,2,105)">
+              <div class="a-fill a-fill-gold" id="aFill2" style="width:0%"></div>
+            </div>
+            <span class="a-time" id="aTime2">0:00 / 1:45</span>
+          </div>
+          <audio id="audio2" src="فاطمة.MP4" preload="metadata"></audio>
+        </div>
+        <a href="https://drive.google.com/file/d/1EaouqG2OOJy421EOFMeVeHfMUAIr-51e/view?usp=sharing" target="_blank" class="v-btn-port" style="border-color:rgba(251,191,36,0.28);color:#fbbf24;" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+          </svg>
+          <span data-i18n="view_portfolio">عرض محفظة الأعمال الصوتية الكاملة</span>
+        </a>
+        <button class="v-btn-sel" id="vSelBtn2" onclick="selectVoice(2,'المعلق الثاني — الأسلوب الوثائقي');event.stopPropagation()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="4" fill="currentColor" id="vSelDot2" style="opacity:0"/>
+          </svg>
+          <span data-i18n="select_voice_btn">اختيار هذا المعلق</span>
+        </button>
+      </div>
+
+      <div class="v-card" id="vc3" onclick="selectVoice(3,'المعلق الثالث — الأسلوب التقني الحديث')">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#38bdf8;">٣</div>
+            <div class="i-box" style="width:42px;height:42px;background:linear-gradient(135deg,rgba(12,74,110,0.6),rgba(56,189,248,0.18));border-color:rgba(56,189,248,0.2);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.6">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+              </svg>
+            </div>
+          </div>
+          <div class="v-check" id="vCheck3">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="transparent" stroke-width="3" id="vChkSvg3">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="v-tag v-tag-3">المعلق الثالث · MODERN TECH / Different languages </div>
+        <h3 style="font-size:17.5px;font-weight:800;color:#fff;margin-bottom:9px;" data-i18n="vo3_title">(لغة انجليزية) الأسلوب التقني الحديث</h3>
+        <p style="font-size:13.5px;color:rgba(148,163,184,0.85);line-height:1.85;margin-bottom:18px;" data-i18n="vo3_desc">
+          نبرة سريعة، حيوية، ومباشرة (يمكن تقديمها باللغة الإنجليزية) — مثالية لمنصات التواصل الاجتماعي والجيل الرقمي ورواد الأعمال المهتمين بالاستدامة.
+        </p>
+        <div class="a-player" style="border-color:rgba(56,189,248,0.16);">
+          <div class="a-lbl" style="color:rgba(56,189,248,0.75);" data-i18n="listen_sample">▸ استمع للعينة الصوتية الافتراضية</div>
+          <div class="a-row">
+            <button class="a-play a-play-blue" id="aPlay3" onclick="togglePlay(event,3,80)">
+              <svg id="aIcon3" width="15" height="15" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <div class="a-track" id="aTrack3" onclick="seekTo(event,3,80)">
+              <div class="a-fill a-fill-blue" id="aFill3" style="width:0%"></div>
+            </div>
+            <span class="a-time" id="aTime3">0:00 / 1:20</span>
+          </div>
+          <audio id="audio3" src="حسام٢.mpeg" preload="metadata"></audio>
+        </div>
+        <a href="https://www.instagram.com/hossamalmadani?igsh=MWJ2MGx0dHNsZGpqZQ==" target="_blank" class="v-btn-port" style="border-color:rgba(56,189,248,0.28);color:#38bdf8;" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+          </svg>
+          <span data-i18n="view_portfolio">عرض محفظة الأعمال الصوتية الكاملة</span>
+        </a>
+        <button class="v-btn-sel" id="vSelBtn3" onclick="selectVoice(3,'المعلق الثالث — الأسلوب التقني الحديث');event.stopPropagation()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="4" fill="currentColor" id="vSelDot3" style="opacity:0"/>
+          </svg>
+          <span data-i18n="select_voice_btn">اختيار هذا المعلق</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-div"></div>
+<section class="sec sec-darker" id="cinematography">
+  <div class="ctr">
+    <div class="reveal" style="text-align:center;margin-bottom:68px;">
+      <div class="eyebrow" data-i18n="c_eyebrow">الإنتاج الميداني والجوي</div>
+      <h2 class="sec-title" data-i18n="c_title">التصوير الفوتوغرافي والإنتاج الجوي</h2>
+      <p class="sec-sub" data-i18n="c_sub" style="margin:0 auto;">
+        حزمة تصوير ميدانية احترافية مدمجة مع قدرات الدرون لالتقاط الروعة البصرية لمشاريع الوزارة في أرقى مستوياتها.
+      </p>
+    </div>
+    <div class="g3 reveal" style="margin-bottom:44px;">
+      <div class="spec-card">
+        <div class="spec-n">5</div>
+        <div class="spec-l" data-i18n="c_stat1">ساعات إنتاجية متواصلة<br/>في يوم عمل واحد</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-n">4K</div>
+        <div class="spec-l" data-i18n="c_stat2">دقة التصوير الجوي<br/>فائقة الوضوح</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-n" style="font-size:36px;line-height:1.2;">∞</div>
+        <div class="spec-l" data-i18n="c_stat3">حقوق استخدام كاملة<br/>عبر كافة المنصات الرقمية</div>
+      </div>
+    </div>
+    <div class="g-card reveal" style="margin-bottom:28px;">
+      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+        <div class="i-box" style="width:64px;height:64px;flex-shrink:0;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.5">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:200px;">
+          <span class="h-tag" style="display:inline-block;margin-bottom:10px;">On-Site Photography Package</span>
+          <h3 style="font-size:20px;font-weight:800;color:#fff;margin-bottom:10px;" data-i18n="c_block_title">جلسة التصوير الفوتوغرافي الميداني</h3>
+          <p style="color:rgba(148,163,184,0.9);font-size:14.5px;line-height:1.9;" id="c-block-desc-p">
+            <strong style="color:#34d399;">جلسة تصوير فوتوغرافي مكثفة ومحترفة في حدود 5 ساعات إنتاجية متواصلة في يوم عمل واحد</strong> — تشمل التصوير المعماري المؤسسي، التوثيق الاحترافي للبنية التحتية، والمواقع الميدانية لمشاريع الاستدامة والتحول الأخضر لدى الوزارة.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-bottom:52px;">
+      <div style="background:rgba(251,191,36,0.07);border:1px solid rgba(251,191,36,0.2);border-radius:14px;padding:16px 24px;display:flex;align-items:flex-start;gap:14px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" style="flex-shrink:0;margin-top:2px;">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p style="font-size:13.5px;color:rgba(203,213,225,0.8);line-height:1.8;margin:0;" id="c-note-p">
+          <strong style="color:#fbbf24;">ملاحظة:</strong> في حال وُجدت الحاجة إلى التصوير الجوي بطائرة الدرون لتوثيق المنشآت البيئية، مبادرات الطاقة النظيفة، أو تغطية الشواهد الميدانية المرتبطة بتقرير الاستدامة، فسيكون ذلك متاحاً، <strong style="color:#fbbf24;">برسوم إضافية يُتفق عليها</strong> عند الحاجة.
+        </p>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;">
+      <a href="https://www.instagram.com/_5zg2?igsh=MWN2NWh6YnFram5tcA==" target="_blank" style="text-decoration: none; display: inline-block;">
+        <button class="btn-glass" data-i18n="c_btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          استعراض معرض أعمال التصوير الفوتوغرافي والدرون السابقة 
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+<div class="section-div"></div>
+<section class="sec sec-dark" id="financial">
+  <div class="ctr">
+    <div class="reveal" style="text-align:center;margin-bottom:68px;">
+      <div class="eyebrow" data-i18n="f_eyebrow">الشفافية المالية الكاملة</div>
+      <div class="sec-title" data-i18n="f_title">جدول التحليل المالي والاستثمار</div>
+      <p class="sec-sub" data-i18n="f_sub" style="margin:0 auto;">
+        كشف مالي مفصّل وشفاف بجميع بنود الخدمة والمنفذين المسؤولين — استثمار إبداعي بعائد مؤسسي استثنائي.
+      </p>
+    </div>
+    <div class="reveal" style="overflow-x:auto;margin-bottom:0;">
+      <table class="fin-table">
+        <thead>
+          <tr>
+            <th style="width:54%;" data-i18n="th_item">البند والخدمة الفنية</th>
+            <th style="width:26%;" data-i18n="th_team">الكادر المسؤول عن التنفيذ</th>
+            <th style="width:20%;" id="th-investment-head" style="text-align:right;">القيمة والاستثمار المالي</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div style="font-weight:700;color:#f1f5f9;margin-bottom:6px;font-size:15px;" data-i18n="f_r1_title">إخراج وإنتاج العمل الإبداعي بالكامل</div>
+              <div style="font-size:12.5px;color:rgba(148,163,184,0.72);line-height:1.75;" data-i18n="f_r1_desc">
+                يشمل: إدارة المشروع فنيًا · تصميم الموشن جرافيكس والانفوجرافيكس · كتابة السيناريو الاستراتيجي · المونتاج السينمائي وهندسة الصوت
+              </div>
+            </td>
+            <td>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div class="avt" style="background:linear-gradient(135deg,#064e3b,#34d399);" data-i18n="f_r1_avt">ع</div>
+                <span style="font-weight:700;color:#e2e8f0;font-size:14px;" data-i18n="f_r1_name">عبدالله الربيعي</span>
+              </div>
+            </td>
+            <td>
+              <span class="p-val">390</span>
+              <span class="p-cur" data-i18n="currency">ر.ع</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:700;color:#f1f5f9;margin-bottom:6px;font-size:15px;" data-i18n="f_r2_title">تسجيل التعليق الصوتي الاحترافي</div>
+              <div style="font-size:12.5px;color:rgba(148,163,184,0.72);line-height:1.75;" data-i18n="f_r2_desc">
+                شامل حجز أحد المعلقين الثلاثة المختارين · هندسة طبقات الصوت · حقوق الاستخدام الفني عبر المنصات الرقمية والموقع الرسمي
+              </div>
+            </td>
+            <td>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div class="avt" style="background:linear-gradient(135deg,#78350f,#fbbf24);" data-i18n="f_r2_avt">م</div>
+                <div>
+                  <div style="font-weight:700;color:#e2e8f0;font-size:13.5px;" data-i18n="f_r2_name">المعلق المختار</div>
+                  <div style="font-size:11.5px;color:rgba(148,163,184,0.6);" data-i18n="f_r2_sub">بالتنسيق مع المنتج</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="p-val">100</span>
+              <span class="p-cur" data-i18n="currency">ر.ع</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:700;color:#f1f5f9;margin-bottom:6px;font-size:15px;" data-i18n="f_r3_title">التصوير الفوتوغرافي الميداني المعماري والمؤسسي</div>
+              <div style="font-size:12.5px;color:rgba(148,163,184,0.72);line-height:1.75;" id="f-r3-desc-div">
+                تغطية 5 ساعات عمل متواصلة في موقع العميل / يوم واحد — تصوير معماري احترافي لمشاريع ومرافق الوزارة
+                <span style="display:inline-block;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);border-radius:4px;padding:1px 8px;font-size:10.5px;color:#fbbf24;font-weight:700;margin-right:6px;margin-top:4px;" data-i18n="f_r3_note">* التصوير الجوي بالدرون عند الحاجة برسوم إضافية</span>
+              </div>
+            </td>
+            <td>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div class="avt" style="background:linear-gradient(135deg,#0c4a6e,#38bdf8);" data-i18n="f_r3_avt">ص</div>
+                <div>
+                  <div style="font-weight:700;color:#e2e8f0;font-size:13.5px;" data-i18n="f_r3_name">مصور فوتوغرافي</div>
+                  <div style="font-size:11.5px;color:rgba(148,163,184,0.6);" data-i18n="f_r3_sub">وجوي محترف</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="p-val">120</span>
+              <span class="p-cur" data-i18n="currency">ر.ع</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="total-crd reveal">
+      <div style="flex:1;">
+        <div style="font-size:11px;font-weight:800;letter-spacing:2.5px;color:rgba(52,211,153,0.65);margin-bottom:12px;text-transform:uppercase;" data-i18n="tot_grand_tag">الإجمالي الكلي للمشروع</div>
+        <div class="tot-lbl" data-i18n="tot_grand_lbl">
+          إجمالي الاستثمار المالي للمشروع كاملاً<br/>شامل كافة البنود الثلاثة
+        </div>
+        <div class="tot-sub" id="tot-grand-sub-text">
+          فقط وقدره: ستمائة وعشرة ريالات عُمانية فقط لا غير<br/>
+          (شامل كافة حقوق الإنتاج الرقمي والتسليم الفوري).
+        </div>
+      </div>
+      <div class="tot-right" id="tot-right-block">
+        <div class="tot-price">610</div>
+        <div class="tot-unit" data-i18n="tot_grand_unit">ريال عُماني</div>
+        <div style="font-size:13px;color:rgba(52,211,153,0.55);margin-top:6px;font-weight:700;">OMR · ر.ع</div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:20px;">
+      <div style="background:rgba(30,41,59,0.5);border:1px solid rgba(52,211,153,0.15);border-radius:14px;padding:16px 24px;display:flex;align-items:flex-start;gap:14px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" style="flex-shrink:0;margin-top:2px;">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p style="font-size:13.5px;color:rgba(148,163,184,0.8);line-height:1.8;margin:0;" id="f-financial-note-p">
+          <strong style="color:#34d399;">ملاحظة مالية:</strong> القيمة المالية المذكورة أعلاه هي تقدير أولي قابل للنقاش والتعديل بحسب الحاجة الفعلية للمشروع وطبيعة متطلبات التنفيذ النهائية المتفق عليها مع الوزارة.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="ctr">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;margin-bottom:36px;" id="footer-row-container">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="logo-mark" style="width:38px;height:38px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L4 7v5c0 4.6 3.5 8.9 8 9.9 4.5-1 8-5.3 8-9.9V7l-8-5z" fill="rgba(255,255,255,0.95)"/>
+            <path d="M9 12l2 2.5 4-5" stroke="#064e3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#fff;">MTCIT NetZero Response</div>
+          <div style="font-size:11px;color:rgba(52,211,153,0.6);" data-i18n="foot_title">ESG Sustainability Report 2025</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:12.5px;color:rgba(100,116,139,0.75);line-height:1.7;" id="foot-confidential-p">
+          هذه الوثيقة سرية ومُعدة حصريًا<br/>
+          لفاضلة / جهينة الشامسية — وزارة النقل والاتصالات وتقنية المعلومات
+        </div>
+      </div>
+      <div style="text-align:left;" id="foot-credit-block">
+        <div style="font-size:14px;font-weight:800;color:#fff;" data-i18n="foot_author">عبدالله الربيعي</div>
+        <div style="font-size:12px;color:rgba(52,211,153,0.65);" data-i18n="foot_author_sub">مخرج ومنتج المحتوى الإبداعي</div>
+      </div>
+    </div>
+    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.2),transparent);margin-bottom:28px;"></div>
+    <div style="text-align:center;">
+      <p style="font-size:12.5px;color:rgba(71,85,105,0.8);" data-i18n="foot_copy">
+        © 2026 — جميع حقوق الإنتاج والفكرة الإبداعية محفوظة · عبدالله الربيعي
+      </p>
+    </div>
+  </div>
+</footer>
+<script>
+// ─────────────────────────────────────────────────────────────
+// GLOBAL DICTIONARY FOR ARABIC & ENGLISH TRANSLATIONS
+// ─────────────────────────────────────────────────────────────
+const translations = {
+  ar: {
+    page_title: "العرض الفني والمالي الرقمي | MTCIT NetZero | ESG 2025",
+    top_bar_title: "يستجيب هذا العرض لكافة الاشتراطات والمتطلبات ·",
+    top_nav_1: "المنهجية الإبداعية وأسلوب العمل",
+    top_nav_2: "الجدول الزمني للتسليم",
+    top_nav_3: "التحليل المالي المفصّل",
+    top_nav_4: "محفظة الأعمال السابقة",
+    top_nav_5: "خيارات إنتاجية إضافية",
+    confidential_tag: "وثيقة حصرية · سرية",
+    nav_vision: "الرؤية",
+    nav_pipeline: "المراحل",
+    nav_voice: "الصوت",
+    nav_finance: "المالية",
+    hero_badge: "استجابة إبداعية حصرية ومقترح إنتاج متكامل",
+    hero_scroll_text: "اكتشف الأبعاد الإبداعية للمشروع",
+    v_eyebrow: "الفلسفة الفنية والمفهوم الإبداعي",
+    v_title: "المنهجية الهجينة المتكاملة",
+    v_card1_tag: "البُعد الرقمي / Digital Dimension",
+    v_card1_title: "الرسوم البيانية والموشن جرافيكس",
+    v_card1_desc: "منظومة بصرية رقمية متكاملة تحوّل أرقام تقرير الاستدامة إلى رسائل حركية دقيقة تُهيمن على الانتباه وتُحرك المشاعر التنفيذية.",
+    v_card1_li1: "تصور بيانات الكربون بتقنية 2D/3D متقدمة ومخصصة",
+    v_card1_li2: "إنفوجرافيكس ديناميكية مبنية لكل مؤشر أداء رئيسي",
+    v_card1_li3: "خرائط بيانات تفاعلية لشبكات المشاريع الوطنية",
+    v_card1_li4: "أيقونوجرافيا حركية متسقة مع الهوية البصرية للوزارة",
+    v_card2_tag: "البُعد الإنساني / Human Dimension",
+    v_card2_title: "التصوير الميداني والواقعي",
+    v_card2_desc: "توثيق سينمائي فاخر يضع المشاهد في قلب التحول المؤسسي الحقيقي ويُجسّد الإنجازات البيئية لعُمان بعدسة احترافية على أرض الواقع.",
+    v_card2_li1: "تصوير معماري يُبرز مقياس المشاريع الوطنية الكبرى",
+    v_card2_li2: "لقطات بيئية تعكس عمق الالتزام بالاستدامة الفعلية",
+    v_card2_li3: "توثيق البنية التحتية العُمانية بمعايير عالمية",
+    v_card2_li4: "إضاءة سينمائية احترافية وزوايا تصوير إبداعية",
+    m_eyebrow: "التصور المبدئي البصري",
+    m_title: "اللوحة الإبداعية والتصور المبدئي",
+    m_c1_title: "الأسلوب البصري البسيط",
+    m_c1_desc: "بصمة رقمية نظيفة تضع البيانات في صدارة المشهد",
+    m_c2_title: "أسلوب ابداعي هجين",
+    m_c2_desc: "نهج مرئي يجمع بين الرسوم المتحركة والمشاهد الحقيقية، لضمان إيصال الرسالة بأسلوب مباشر وفعّال",
+    m_c3_title: "خرائط البيانات التفاعلية",
+    m_c3_desc: "تمثيل بصري للشبكات والعلاقات المؤسسية الحيّة",
+    m_c4_title: "العمق السينمائي",
+    m_c4_desc: "طبقات بصرية عميقة تمنح الإحساس السينمائي الحصري",
+    p_eyebrow: "معرض الأعمال السابقة",
+    p_title: "نماذج من أعمال المخرج والمنتج الإبداعي",
+    p_sub: "مجموعة مختارة من الأعمال الإنتاجية السابقة في مجال الفيديو المؤسسي والموشن جرافيكس والتصوير الميداني",
+    p_c1_title: "فيديو مؤسسي — تقرير سنوي",
+    p_c2_title: "إنفوجرافيكس وتحريك بيانات",
+    p_c3_title: "محتوى استدامة وتقارير بيئية",
+    sample_tag: "عينة من أعمالنا",
+    p_btn: "استعراض الأعمال الإبداعية الكاملة للمخرج والمنتج عبدالله الربيعي",
+    t_eyebrow: "الجدول الزمني المقترح",
+    t_title: "خطة التسليم من السيناريو إلى النسخة النهائية",
+    t_sub: "جدول زمني واقعي ومحكم يضمن تسليم منتج إبداعي عالي الجودة في غضون شهر إلى شهر وعشرة أيام من تاريخ الاعتماد الرسمي للمشروع.",
+    t_days: "أيام",
+    t_p1_tag: "المرحلة ١ · Kickoff",
+    t_p1_week: "الأسبوع الأول",
+    t_p1_title: "استلام التقرير وهندسة القصة",
+    t_p1_desc: "استلام تقرير ESG 2025 كاملاً، قراءة وتحليل الـ 50 صفحة، استخلاص المحاور الرئيسية، وكتابة المسودة الأولى للسيناريو مع توزيع المشاهد البصرية.",
+    t_p2_tag: "المرحلة ٢ · Approval",
+    t_p2_week: "الأسبوع الثاني",
+    t_p2_title: "اعتماد السيناريو والتخطيط الإنتاجي",
+    t_p2_desc: "عرض السيناريو النهائي على الوزارة لاعتماده، تحديد جدول التصوير الميداني، والتنسيق مع كادر التصوير وتحديد المواقع المستهدفة.",
+    t_p3_tag: "المرحلة ٣ · Production",
+    t_p3_week: "الأسبوع الثالث",
+    t_p3_title: "التصوير الميداني وتسجيل الصوت",
+    t_p3_desc: "تنفيذ جلسة التصوير الميداني في مواقع الوزارة، تسجيل التعليق الصوتي بالمعلق المختار، واستلام كافة المواد الخام جاهزة للمونتاج.",
+    t_p4_tag: "المرحلة ٤ · Post-Production",
+    t_p4_week: "الأسبوعان الرابع والخامس",
+    t_p4_title: "التحريك والمونتاج والهندسة الصوتية",
+    t_p4_desc: "تصميم وتحريك الموشن جرافيكس والإنفوجرافيكس الكاملة، مونتاج الفيديو، دمج التعليق الصوتي والمؤثرات الصوتية والموسيقى الخلفية.",
+    t_p5_tag: "التسليم النهائي · Final Delivery",
+    t_p5_week: "يوم ٣٣–٤٠",
+    t_p5_title: "المراجعة والتسليم الرسمي",
+    t_p5_desc: "عرض النسخة الأولى للمراجعة، تنفيذ التعديلات المطلوبة ضمن جولة مراجعة واحدة، والتسليم الرسمي للنسخة النهائية بجودة عالية وبكافة الصيغ الرقمية المطلوبة.",
+    t_total_duration: "الإجمالي: شهر إلى شهر وعشرة أيام",
+    t_video_duration: "مدة الفيديو: 3–4 دقائق",
+    scope_eyebrow: "الهندسة الإنتاجية المتسلسلة",
+    scope_title: "نطاق العمل ومراحل الإنتاج",
+    scope_sub: "أربعة محاور إنتاجية متكاملة ومتتالية تضمن التسليم الاحترافي في كل مرحلة دون الإخلال بالتفاصيل الاستراتيجية.",
+    scope_s1_title: "هندسة القصة والبيانات وصياغة السيناريو",
+    scope_s1_desc: "قراءة وفلترة الـ 50 صفحة وتلخيصها هندسياً دون الإخلال بالمضمون الاستراتيجي، وتحويل الأرقام الصعبة إلى نصوص حوارية وبصرية مشوقة تحدد بدقة ما يُسمع وما يُرى في كل ثانية من الفيديو.",
+    scope_s2_title: "الإنتاج الميداني والتصوير المشترك",
+    scope_s2_desc: "التخطيط الميداني الكامل، تحديد زوايا التصوير المعمارية لمشاريع الوزارة وتوثيق الإنجازات الحية بأسلوب سينمائي فاخر يعكس عظمة البنية التحتية العُمانية.",
+    scope_s3_title: "التحريك الرقمي والموشن جرافيكس الفاخر",
+    scope_s3_desc: "بناء الهوية البصرية الحركية الخاصة بالوزارة، تصميم وتحريك الجداول البيانية المعقدة، وجعل الأرقام تتدفق بسلاسة بصرية فائقة الدقة وفق أعلى معايير صناعة الإنتاج العالمية.",
+    scope_s4_title: "الهندسة الصوتية والماسترينج النهائي",
+    scope_s4_desc: "معالجة وهندسة طبقات الصوت، تركيب المؤثرات الصوتية الدقيقة (SFX) لحركات الموشن جرافيكس، ومزج الموسيقى الخلفية الملهمة التي تعكس الابتكار والمستقبل الفاخر للسلطنة.",
+    v_options_eyebrow: "خيارات التعليق الصوتي",
+    v_options_title: "ثلاثة معلقين مختلفون — اختر الأنسب لرسالتكم",
+    v_options_sub: "نقدم لكم ثلاثة معلقين صوتيين مختلفين بأساليب وشخصيات متباينة، لكل منهم خبرة احترافية عالية في الإنتاج المؤسسي — لكم حرية الاختيار بين أحدهم وفق طبيعة الرسالة وقناة النشر المستهدفة.",
+    vo1_title: "الأسلوب التنفيذي الرسمي",
+    vo1_desc: "نبرة رسمية وقوية تعكس ثقل المؤسسة وريادتها — مثالية لعروض القيادة العليا، الموقع الرسمي، والمنصات الاستراتيجية للوزارة.",
+    listen_sample: "▸ استمع للعينة الصوتية الافتراضية",
+    view_portfolio: "عرض محفظة الأعمال الصوتية الكاملة",
+    select_voice_btn: "اختيار هذا المعلق",
+    vo2_title: "الأسلوب الوثائقي الملهم",
+    vo2_desc: "نبرة دافئة وملهمة تركز على البُعد الإنساني والوطني — مثالية للعرض الدولي ومنصات التواصل البيئية والاجتماعية.",
+    vo3_title: "(لغة انجليزية) الأسلوب التقني الحديث",
+    vo3_desc: "نبرة سريعة، حيوية، ومباشرة (يمكن تقديمها باللغة الإنجليزية) — مثالية لمنصات التواصل الاجتماعي والجيل الرقمي ورواد الأعمال المهتمين بالاستدامة.",
+    c_eyebrow: "الإنتاج الميداني والجوي",
+    c_title: "التصوير الفوتوغرافي والإنتاج الجوي",
+    c_sub: "حزمة تصوير ميدانية احترافية مدمجة مع قدرات الدرون لالتقاط الروعة البصرية لمشاريع الوزارة في أرقى مستوياتها.",
+    c_stat1: "ساعات إنتاجية متواصلة<br/>في يوم عمل واحد",
+    c_stat2: "دقة التصوير الجوي<br/>فائقة الوضوح",
+    c_stat3: "حقوق استخدام كاملة<br/>عبر كافة المنصات الرقمية",
+    c_block_title: "جلسة التصوير الفوتوغرافي الميداني",
+    c_btn: "استعراض معرض أعمال التصوير الفوتوغرافي والدرون السابقة ",
+    f_eyebrow: "الشفافية المالية الكاملة",
+    f_title: "جدول التحليل المالي والاستثمار",
+    f_sub: "كشف مالي مفصّل وشفاف بجميع بنود الخدمة والمنفذين المسؤولين — استثمار إبداعي بعائد مؤسسي استثنائي.",
+    th_item: "البند والخدمة الفنية",
+    th_team: "الكادر المسؤول عن التنفيذ",
+    f_r1_title: "إخراج وإنتاج العمل الإبداعي بالكامل",
+    f_r1_desc: "يشمل: إدارة المشروع فنيًا · تصميم الموشن جرافيكس والانفوجرافيكس · كتابة السيناريو الاستراتيجي · المونتاج السينمائي وهندسة الصوت",
+    f_r1_avt: "ع",
+    f_r1_name: "عبدالله الربيعي",
+    currency: "ر.ع",
+    f_r2_title: "تسجيل التعليق الصوتي الاحترافي",
+    f_r2_desc: "شامل حجز أحد المعلقين الثلاثة المختارين · هندسة طبقات الصوت · حقوق الاستخدام الفني عبر المنصات الرقمية والموقع الرسمي",
+    f_r2_avt: "م",
+    f_r2_name: "المعلق المختار",
+    f_r2_sub: "بالتنسيق مع المنتج",
+    f_r3_title: "التصوير الفوتوغرافي الميداني المعماري والمؤسسي",
+    f_r3_avt: "ص",
+    f_r3_name: "مصور فوتوغرافي",
+    f_r3_sub: "وجوي محترف",
+    tot_grand_tag: "الإجمالي الكلي للمشروع",
+    tot_grand_lbl: "إجمالي الاستثمار المالي للمشروع كاملاً<br/>شامل كافة البنود الثلاثة",
+    tot_grand_unit: "ريال عُماني",
+    foot_title: "ESG Sustainability Report 2025",
+    foot_author: "عبدالله الربيعي",
+    foot_author_sub: "مخرج ومنتج المحتوى الإبداعي",
+    foot_copy: "© 2026 — جميع حقوق الإنتاج والفكرة الإبداعية محفوظة · عبدالله الربيعي"
+  },
+  en: {
+    page_title: "Digital Technical & Financial Proposal | MTCIT NetZero | ESG 2025",
+    top_bar_title: "This proposal complies with all criteria & specifications ·",
+    top_nav_1: "Creative Concept & Workflow",
+    top_nav_2: "Delivery Timeline",
+    top_nav_3: "Detailed Financial Analysis",
+    top_nav_4: "Previous Portfolio",
+    top_nav_5: "Additional Production Options",
+    confidential_tag: "Exclusive · Confidential Document",
+    nav_vision: "Vision",
+    nav_pipeline: "Phases",
+    nav_voice: "Voiceover",
+    nav_finance: "Financials",
+    hero_badge: "Exclusive Creative Response & Integrated Production Proposal",
+    hero_scroll_text: "Discover the Creative Dimensions of the Project",
+    v_eyebrow: "Artistic Philosophy & Creative Concept",
+    v_title: "Integrated Hybrid Methodology",
+    v_card1_tag: "Digital Dimension",
+    v_card1_title: "Infographics & Motion Graphics",
+    v_card1_desc: "An integrated digital visual framework converting sustainability report figures into precise dynamic data that captures attention.",
+    v_card1_li1: "Advanced tailored 2D/3D carbon data visualization",
+    v_card1_li2: "Custom motion infographics crafted for each KPI indicator",
+    v_card1_li3: "Interactive data maps displaying national project networks",
+    v_card1_li4: "Dynamic iconography aligned with the Ministry's visual identity",
+    v_card2_tag: "Human Dimension",
+    v_card2_title: "On-Site Cinematic Cinematography",
+    v_card2_desc: "Premium cinematic documentation that positions the viewer at the heart of actual institutional transformation and captures Oman's green progress.",
+    v_card2_li1: "Architectural filming highlighting the scale of national mega projects",
+    v_card2_li2: "Environmental scenes capturing the depth of real sustainability commitment",
+    v_card2_li3: "Documentation of Omani infrastructure to premium global benchmarks",
+    v_card2_li4: "Professional cinematic lighting and creative camera angles",
+    m_eyebrow: "Visual Moodboard",
+    m_title: "Creative Board & Visual Pre-visualization",
+    m_c1_title: "Minimalist Visual Style",
+    m_c1_desc: "A clean digital fingerprint that positions data at the forefront of the scene",
+    m_c2_title: "Creative Hybrid Approach",
+    m_c2_desc: "A visual style fusing animations with live-action footage to deliver messages directly and effectively",
+    m_c3_title: "Interactive Data Maps",
+    m_c3_desc: "Visual representation of living networks and corporate relationships",
+    m_c4_title: "Cinematic Depth",
+    m_c4_desc: "Deep visual layering granting an exclusive cinematic premium feel",
+    p_eyebrow: "Previous Portfolio",
+    p_title: "Samples of the Creative Director & Producer's Work",
+    p_sub: "A curated collection of past productions in corporate videos, motion graphics, and field cinematography",
+    p_c1_title: "Corporate Video — Annual Report",
+    p_c2_title: "Infographics & Data Animation",
+    p_c3_title: "Sustainability Content & ESG Reports",
+    sample_tag: "Our Work Sample",
+    p_btn: "Browse the Complete Creative Portfolio of Director & Producer Abdullah Al-Rubaie",
+    t_eyebrow: "Proposed Timeline",
+    t_title: "Delivery Plan from Scriptwriting to Final Cut",
+    t_sub: "A realistic and tight schedule guaranteeing the delivery of a premium creative product within a month to 40 days from official project kickoff.",
+    t_days: "Days",
+    t_p1_tag: "Phase 1 · Kickoff",
+    t_p1_week: "Week 1",
+    t_p1_title: "Report Handover & Story Architecture",
+    t_p1_desc: "Receiving the complete ESG 2025 report, analyzing the 50 pages, extracting main themes, and scripting the first structural draft with visual scene breakdowns.",
+    t_p2_tag: "Phase 2 · Approval",
+    t_p2_week: "Week 2",
+    t_p2_title: "Script Approval & Production Planning",
+    t_p2_desc: "Presenting the final script to the Ministry for approval, scheduling on-site shooting, coordinating crews, and locking targeted production locations.",
+    t_p3_tag: "Phase 3 · Production",
+    t_p3_week: "Week 3",
+    t_p3_title: "On-Site Cinematography & Voice Recording",
+    t_p3_desc: "Executing professional filming sessions at Ministry sites, recording the script with the selected talent, and delivering raw assets to post-production.",
+    t_p4_tag: "Phase 4 · Post-Production",
+    t_p4_week: "Weeks 4 & 5",
+    t_p4_title: "Animation, Editing & Sound Engineering",
+    t_p4_desc: "Designing and animating custom infographics, editing footage, integrating voiceover tracks, custom sound design (SFX), and score mixing.",
+    t_p5_tag: "Final Delivery",
+    t_p5_week: "Days 33-40",
+    t_p5_title: "Review & Official Handover",
+    t_p5_desc: "Screening the first cut for feedback, applying requested adjustments within one main review loop, and handing over the final high-quality master copy.",
+    t_total_duration: "Total: 1 Month to 40 Days",
+    t_video_duration: "Video Duration: 3-4 Minutes",
+    scope_eyebrow: "Production Architecture",
+    scope_title: "Scope of Work & Production Milestones",
+    scope_sub: "Four integrated sequential production pillars ensuring professional delivery at every single milestone.",
+    scope_s1_title: "Story Engineering, Data Distillation & Scriptwriting",
+    scope_s1_desc: "Filtering the 50-page report structurally without sacrificing strategic depth, turning statistics into engaging audio-visual narratives.",
+    scope_s2_title: "On-Site Cinematography & Co-Production",
+    scope_s2_desc: "Full field planning, defining structural architectural angles for the Ministry's projects, and capturing live milestones with premium camera packages.",
+    scope_s3_title: "Premium Digital Animation & Motion Graphics",
+    scope_s3_desc: "Building the custom dynamic visual ecosystem for the Ministry, animating dense financial datasets, and ensuring fluid seamless pacing.",
+    scope_s4_title: "Sound Design & Immersive Mix",
+    scope_s4_desc: "Equalizing and engineering voice layers, designing crisp sound effects (SFX) for graphics, and mixing an inspiring premium soundtrack.",
+    v_options_eyebrow: "Voiceover Talents",
+    v_options_title: "Three Diverse Voice Talents — Select the Perfect Match",
+    v_options_sub: "We present three professional voice artists with distinct tones and styles, experienced in premium corporate delivery, allowing you to select the ideal voice for your message.",
+    vo1_title: "Official Corporate Style",
+    vo1_desc: "A powerful, formal authority tone reflecting institutional scale — perfect for senior executive briefings and the Ministry's main official portals.",
+    listen_sample: "▸ Listen to Default Audio Sample",
+    view_portfolio: "View Complete Voice Portfolio",
+    select_voice_btn: "Select This Talent",
+    vo2_title: "Inspirational Documentary Style",
+    vo2_desc: "A warm, deeply engaging narrative style emphasizing national and human success stories — ideal for international events and environmental platforms.",
+    vo3_title: "Modern Tech Style (English Available)",
+    vo3_desc: "An energetic, rapid, and contemporary style (available natively in English) — highly effective for social media channels and innovation-focused audiences.",
+    c_eyebrow: "Field & Aerial Production",
+    c_title: "Still Photography & Aerial Production",
+    c_sub: "A professional on-site photography package integrated with drone capabilities to capture the architectural scale of Ministry projects.",
+    c_stat1: "5 Continuous Production Hours<br/>Per Single Shift",
+    c_stat2: "4K Ultra-HD Aerial<br/>Resolution Capture",
+    c_stat3: "Full Unlimited Usage Rights<br/>Across All Digital Media Platforms",
+    c_block_title: "On-Site Architectural & Corporate Photography",
+    c_btn: "Browse Previous Photography & Drone Portfolios",
+    f_eyebrow: "Complete Financial Transparency",
+    f_title: "Financial Analysis & Investment Breakdown",
+    f_sub: "A transparent detailed financial breakdown of all deliverables and execution teams — a creative investment driving premium corporate value.",
+    th_item: "Deliverable & Technical Service",
+    th_team: "Assigned Execution Team",
+    f_r1_title: "Creative Direction & Full Video Production",
+    f_r1_desc: "Includes: Full project artistic direction · Motion graphics & infographic design · Strategic scriptwriting · Cinematic editing & sound design",
+    f_r1_avt: "A",
+    f_r1_name: "Abdullah Al-Rubaie",
+    currency: "OMR",
+    f_r2_title: "Professional Voiceover Recording",
+    f_r2_desc: "Includes: Booking one of the selected talents · Audio layer mastering · Usage rights across digital platforms and official websites",
+    f_r2_avt: "V",
+    f_r2_name: "Selected Voice Artist",
+    f_r2_sub: "In coordination with producer",
+    f_r3_title: "On-Site Architectural & Corporate Photography",
+    f_r3_avt: "P",
+    f_r3_name: "Professional Photo",
+    f_r3_sub: "And Drone Photographer",
+    tot_grand_tag: "Total Grand Investment",
+    tot_grand_lbl: "Total financial investment for the complete project<br/>covering all three core deliverables",
+    tot_grand_unit: "OMR",
+    foot_title: "ESG Sustainability Report 2025",
+    foot_author: "Abdullah Al-Rubaie",
+    foot_author_sub: "Creative Content Director & Producer",
+    foot_copy: "© 2026 — All creative concepts and production rights reserved · Abdullah Al-Rubaie"
+  }
+};
+
+let currentLang = 'ar';
+
+function toggleLanguage() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  const switchBtn = document.getElementById('langSwitch');
+  switchBtn.textContent = currentLang === 'ar' ? 'English' : 'العربية';
+  
+  // Update structural attributes
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
+  
+  // Run Dictionary replacement loops
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[currentLang][key]) {
+      el.innerHTML = translations[currentLang][key];
+    }
+  });
+  
+  // Custom Hardcoded Updates for Compound Rich Text Layout Sections
+  updateComplexTextLayouts();
+}
+
+function updateComplexTextLayouts() {
+  const titleH1 = document.getElementById('main-title-h1');
+  const metaP = document.getElementById('main-meta-p');
+  const attnP = document.getElementById('main-attn-p');
+  const creditP = document.getElementById('main-credit-p');
+  const vSubP = document.getElementById('v-sub-p');
+  const cBlockDesc = document.getElementById('c-block-desc-p');
+  const cNoteP = document.getElementById('c-note-p');
+  const fR3Desc = document.getElementById('f-r3-desc-div');
+  const totGrandSub = document.getElementById('tot-grand-sub-text');
+  const totRightBlock = document.getElementById('tot-right-block');
+  const fFinancialNoteP = document.getElementById('f-financial-note-p');
+  const footConfidentialP = document.getElementById('foot-confidential-p');
+  
+  if (currentLang === 'en') {
+    if(titleH1) titleH1.innerHTML = `Digital Technical & Financial Proposal<br/>For the First Sustainability Video Production<br/><span style="background:linear-gradient(90deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:0.62em;letter-spacing:2px;">ESG 2025</span>`;
+    if(metaP) metaP.innerHTML = `Prepared Specifically for the Ministry of Transport, Communications and Information Technology<br/>NetZero Zero Emissions Office`;
+    if(attnP) attnP.innerHTML = `✦ &nbsp;Attention of Ms. Juhaina AlShamsi &nbsp;·&nbsp; Projects Manager`;
+    if(creditP) creditP.innerHTML = `Developed & Directed by: Creative Content Director & Producer / Abdullah Al-Rubaie`;
+    if(vSubP) vSubP.innerHTML = `The <strong style="color:#34d399;">50-page</strong> ESG 2025 report holds exceptional data density — carbon emissions, risk mitigation frameworks, structural tables, and comprehensive infrastructure indexes. Our creative goal: transmuting this dense knowledge into an executive cinematic narrative spanning <strong style="color:#fbbf24;">3–4 minutes</strong>, delivering monumental impact, and conveying Oman's sustainability depth on a global corporate level.`;
+    if(cBlockDesc) cBlockDesc.innerHTML = `<strong style="color:#34d399;">An intensive and professional photo session within 5 continuous production hours in a single working shift</strong> — covering structural corporate photography, architectural assets, facility capture, and green transformation project fields across the Ministry.`;
+    if(cNoteP) cNoteP.innerHTML = `<strong style="color:#fbbf24;">Note:</strong> If aerial drone cinematography is required to document environmental sites, clean energy initiatives, or cover field evidence linked to the sustainability report, it will be fully available <strong style="color:#fbbf24;">for an additional fee agreed upon</strong> when needed.`;
+    if(fR3Desc) fR3Desc.innerHTML = `Coverage of 5 continuous working hours at the client site / single day — premium architectural photography of Ministry assets and facilities <span style="display:inline-block;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);border-radius:4px;padding:1px 8px;font-size:10.5px;color:#fbbf24;font-weight:700;margin-left:6px;margin-top:4px;">* Drone capture available for extra fee upon request</span>`;
+    if(totGrandSub) totGrandSub.innerHTML = `Only Six Hundred and Ten Omani Rials Only.<br/>(Covers all digital usage licensing and immediate high-res package handover).`;
+    if(totRightBlock) totRightBlock.innerHTML = `<div class="tot-price">610</div><div class="tot-unit">OMR</div><div style="font-size:13px;color:rgba(52,211,153,0.55);margin-top:6px;font-weight:700;">OMR · ر.ع</div>`;
+    if(fFinancialNoteP) fFinancialNoteP.innerHTML = `<strong style="color:#34d399;">Financial Note:</strong> The above financial evaluation is a preliminary baseline estimate that remains open for refinement based on actual final execution parameters locked with the Ministry.`;
+    if(footConfidentialP) footConfidentialP.innerHTML = `This document is confidential and prepared exclusively for<br/>Ms. Juhaina AlShamsi — Ministry of Transport, Communications and Information Technology`;
+  } else {
+    if(titleH1) titleH1.innerHTML = `العرض الفني والمالي الرقمي<br/>لإنتاج فيديو تقرير الاستدامة الأول<br/><span style="background:linear-gradient(90deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:0.62em;letter-spacing:2px;">ESG 2025</span>`;
+    if(metaP) metaP.innerHTML = `مُعد خصيصاً لوزارة النقل والاتصالات وتقنية المعلومات<br/>مكتب صافي الانبعاثات الصفري الكربونية`;
+    if(attnP) attnP.innerHTML = `✦ &nbsp;عناية الفاضلة / جهينة الشامسية &nbsp;·&nbsp; مديرة المشاريع`;
+    if(creditP) creditP.innerHTML = `تطوير وإخراج: المخرج ومنتج المحتوى الإبداعي / عبدالله الربيعي`;
+    if(vSubP) vSubP.innerHTML = `تقرير ESG 2025 البالغ <strong style="color:#34d399;">50 صفحة</strong> يحمل كثافة بيانية استثنائية — انبعاثات كربونية، أطر مخاطر معقدة، جداول هيكلية، ومؤشرات بنية تحتية شاملة. مهمتنا الإبداعية: تحويل وصياغة هذا المحتوى الثقيل إلى سرد سينمائي تنفيذي بمدة <strong style="color:#fbbf24;">3–4 دقائق</strong> ذو تأثير بالغ يُحدث أثراً قيادياً استثنائياً ويُعبّر عن عمق الالتزام البيئي لعُمان بأسلوب عالمي المستوى.`;
+    if(cBlockDesc) cBlockDesc.innerHTML = `<strong style="color:#34d399;">جلسة تصوير فوتوغرافي مكثفة ومحترفة في حدود 5 ساعات إنتاجية متواصلة في يوم عمل واحد</strong> — تشمل التصوير المعماري المؤسسي، التوثيق الاحترافي للبنية التحتية، والمواقع الميدانية لمشاريع الاستدامة والتحول الأخضر لدى الوزارة.`;
+    if(cNoteP) cNoteP.innerHTML = `<strong style="color:#fbbf24;">ملاحظة:</strong> في حال وُجدت الحاجة إلى التصوير الجوي بطائرة الدرون لتوثيق المنشآت البيئية، مبادرات الطاقة النظيفة، أو تغطية الشواهد الميدانية المرتبطة بتقرير الاستدامة، فسيكون ذلك متاحاً، <strong style="color:#fbbf24;">برسوم إضافية يُتفق عليها</strong> عند الحاجة.`;
+    if(fR3Desc) fR3Desc.innerHTML = `تغطية 5 ساعات عمل متواصلة في موقع العميل / يوم واحد — تصوير معماري احترافي لمشاريع ومраفق الوزارة <span style="display:inline-block;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);border-radius:4px;padding:1px 8px;font-size:10.5px;color:#fbbf24;font-weight:700;margin-right:6px;margin-top:4px;" data-i18n="f_r3_note">* التصوير الجوي بالدرون عند الحاجة برسوم إضافية</span>`;
+    if(totGrandSub) totGrandSub.innerHTML = `فقط وقدره: ستمائة وعشرة ريالات عُمانية فقط لا غير<br/>(شامل كافة حقوق الإنتاج الرقمي والتسليم الفوري).`;
+    if(totRightBlock) totRightBlock.innerHTML = `<div class="tot-price">610</div><div class="tot-unit">ريال عُماني</div><div style="font-size:13px;color:rgba(52,211,153,0.55);margin-top:6px;font-weight:700;">OMR · ر.ع</div>`;
+    if(fFinancialNoteP) fFinancialNoteP.innerHTML = `<strong style="color:#34d399;">ملاحظة مالية:</strong> القيمة المالية المذكورة أعلاه هي تقدير أولي قابل للنقاش والتعديل بحسب الحاجة الفعلية للمشروع وطبيعة متطلبات التنفيذ النهائية المتفق عليها مع الوزارة.`;
+    if(footConfidentialP) footConfidentialP.innerHTML = `هذه الوثيقة سرية ومُعدة حصريًا<br/>لفاضلة / جهينة الشامسية — وزارة النقل والاتصالات وتقنية المعلومات`;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// 1. VOICE-OVER STATE MANAGEMENT
+// ─────────────────────────────────────────────────────────────
+let currentVoice = null;
+let bannerTimer = null;
+function selectVoice(num, label) {
+  // Reset all cards
+  [1, 2, 3].forEach(i => {
+    const card  = document.getElementById('vc' + i);
+    const check = document.getElementById('vCheck' + i);
+    const chSvg = document.getElementById('vChkSvg' + i);
+    const dot   = document.getElementById('vSelDot' + i);
+    if (!card) return;
+    card.classList.remove('vc-active');
+    check.style.background = '';
+    check.style.borderColor = 'rgba(52,211,153,0.3)';
+    if (chSvg) { const p = chSvg.querySelector('path'); if(p) p.setAttribute('stroke','transparent'); }
+    if (dot) dot.style.opacity = '0';
+  });
+  // Activate selected card
+  const aCard  = document.getElementById('vc' + num);
+  const aCheck = document.getElementById('vCheck' + num);
+  const aChSvg = document.getElementById('vChkSvg' + num);
+  const aDot   = document.getElementById('vSelDot' + num);
+  if (aCard)  aCard.classList.add('vc-active');
+  if (aCheck) { aCheck.style.background = '#34d399'; aCheck.style.borderColor = '#34d399'; }
+  if (aChSvg) { const p = aChSvg.querySelector('path'); if(p) p.setAttribute('stroke','#064e3b'); }
+  if (aDot)   aDot.style.opacity = '1';
+  currentVoice = num;
+  
+  // Dynamic Confirmation Msg based on current language state
+  let successLabel = currentLang === 'ar' ? `✓ تم اختيار ${label} بنجاح` : `✓ Selected ${label} successfully`;
+  showBanner(successLabel);
+}
+function showBanner(msg) {
+  const b = document.getElementById('sBanner');
+  const t = document.getElementById('sBannerText');
+  if (!b || !t) return;
+  t.textContent = msg;
+  b.classList.add('show');
+  clearTimeout(bannerTimer);
+  bannerTimer = setTimeout(() => b.classList.remove('show'), 3600);
+}
+// ─────────────────────────────────────────────────────────────
+// 2. REAL AUDIO PLAYER SYSTEM USING NATIVE HTML5 MEDIA
+// ─────────────────────────────────────────────────────────────
+const pState = {
+  1: { playing: false, iv: null },
+  2: { playing: false, iv: null },
+  3: { playing: false, iv: null }
+};
+function stopAll(except) {
+  [1,2,3].forEach(i => {
+    if (i === except) return;
+    const audio = document.getElementById('audio' + i);
+    const ps = pState[i];
+    if (audio && !audio.paused) {
+      audio.pause();
+      ps.playing = false;
+      clearInterval(ps.iv); ps.iv = null;
+      setIcon(i, false);
+    }
+  });
+}
+function togglePlay(ev, num, dur) {
+  ev.stopPropagation();
+  const audio = document.getElementById('audio' + num);
+  const ps = pState[num];
+  if (!audio) return;
+  if (!audio.paused) {
+    audio.pause();
+    ps.playing = false;
+    clearInterval(ps.iv); ps.iv = null;
+    setIcon(num, false);
+    return;
+  }
+  stopAll(num);
+  audio.play().then(() => {
+    ps.playing = true;
+    setIcon(num, true);
+    
+    clearInterval(ps.iv);
+    ps.iv = setInterval(() => {
+      if (audio.ended) {
+        ps.playing = false;
+        clearInterval(ps.iv); ps.iv = null;
+        setIcon(num, false);
+        const fill = document.getElementById('aFill' + num);
+        if (fill) fill.style.width = '0%';
+        const time = document.getElementById('aTime' + num);
+        if (time) time.textContent = `0:00 / ${Math.floor(audio.duration / 60)}:${String(Math.floor(audio.duration % 60)).padStart(2,'0')}`;
+        return;
+      }
+      
+      if (audio.duration) {
+        const pct = (audio.currentTime / audio.duration) * 100;
+        const fill = document.getElementById('aFill' + num);
+        const time = document.getElementById('aTime' + num);
+        if (fill) fill.style.width = pct.toFixed(1) + '%';
+        if (time) {
+          const cur = Math.floor(audio.currentTime);
+          const cm  = Math.floor(cur / 60), cs = cur % 60;
+          const tm  = Math.floor(audio.duration / 60), ts = Math.floor(audio.duration % 60);
+          time.textContent = `${cm}:${String(cs).padStart(2,'0')} / ${tm}:${String(ts).padStart(2,'0')}`;
+        }
+      }
+    }, 100);
+  }).catch(err => {
+    console.error("Audio playback interrupted or file not found:", err);
+  });
+}
+function seekTo(ev, num, dur) {
+  ev.stopPropagation();
+  const audio = document.getElementById('audio' + num);
+  const track = ev.currentTarget;
+  if (!audio || !audio.duration) return;
+  
+  const rect = track.getBoundingClientRect();
+  const offsetX = ev.clientX - rect.left;
+  const pct = Math.max(0, Math.min(100, (offsetX / track.offsetWidth)));
+  
+  audio.currentTime = pct * audio.duration;
+  const fill = document.getElementById('aFill' + num);
+  if (fill) fill.style.width = (pct * 100).toFixed(1) + '%';
+}
+function setIcon(num, playing) {
+  const ico = document.getElementById('aIcon' + num);
+  if (!ico) return;
+  ico.innerHTML = playing
+    ? '<rect x="6" y="4" width="4" height="16" fill="white"/><rect x="14" y="4" width="4" height="16" fill="white"/>'
+    : '<polygon points="5 3 19 12 5 21 5 3" fill="white"/>';
+}
+// Initial structural metadata setup for native track loops loading durations dynamically
+[1, 2, 3].forEach(i => {
+  const audio = document.getElementById('audio' + i);
+  if (audio) {
+    audio.addEventListener('loadedmetadata', () => {
+      const time = document.getElementById('aTime' + i);
+      if (time && audio.duration) {
+        const tm = Math.floor(audio.duration / 60), ts = Math.floor(audio.duration % 60);
+        time.textContent = `0:00 / ${tm}:${String(ts).padStart(2,'0')}`;
+      }
+    });
+  }
+});
+// ─────────────────────────────────────────────────────────────
+// 3. SCROLL REVEAL OBSERVER
+// ─────────────────────────────────────────────────────────────
+(function initReveal() {
+  const els = document.querySelectorAll('.reveal, .reveal-left');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(e => e.classList.add('visible'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = Array.from(entry.target.parentNode.querySelectorAll('.reveal, .reveal-left'));
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => entry.target.classList.add('visible'), idx * 60);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(e => obs.observe(e));
+})();
+// ─────────────────────────────────────────────────────────────
+// 4. SMOOTH SCROLL FOR ALL ANCHOR LINKS
+// ─────────────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const id = this.getAttribute('href');
+    if (id === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(id);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+const scrollCta = document.querySelector('.scroll-cta');
+if (scrollCta) {
+  scrollCta.addEventListener('click', e => {
+    e.preventDefault();
+    const v = document.getElementById('vision');
+    if (v) v.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+// ─────────────────────────────────────────────────────────────
+// 5. CTA BUTTON MICRO-INTERACTIONS (scale on hover)
+// ─────────────────────────────────────────────────────────────
+document.querySelectorAll('.btn-p, .btn-glass').forEach(btn => {
+  btn.addEventListener('mouseenter', () => btn.style.transform = 'scale(1.022) translateY(-2px)');
+  btn.addEventListener('mouseleave', () => btn.style.transform = '');
+});
+document.querySelectorAll('.v-btn-port').forEach(btn => {
+  btn.addEventListener('mouseenter', () => btn.style.transform = 'scale(1.015)');
+  btn.addEventListener('mouseleave', () => btn.style.transform = '');
+});
+// ─────────────────────────────────────────────────────────────
+// 6. MOODBOARD ENHANCED GLOW
+// ─────────────────────────────────────────────────────────────
+document.querySelectorAll('.mood-card').forEach(card => {
+  card.addEventListener('mouseenter', () => card.style.boxShadow = '0 0 52px rgba(52,211,153,0.28), 0 24px 56px rgba(0,0,0,0.5)');
+  card.addEventListener('mouseleave', () => card.style.boxShadow = '');
+});
+// ─────────────────────────────────────────────────────────────
+// 7. HERO PARALLAX (subtle)
+// ─────────────────────────────────────────────────────────────
+let rafPending = false;
+window.addEventListener('scroll', () => {
+  if (rafPending) return;
+  rafPending = true;
+  requestAnimationFrame(() => {
+    const y = window.pageYOffset;
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent && y < window.innerHeight) {
+      heroContent.style.transform = `translateY(${y * 0.25}px)`;
+      heroContent.style.opacity   = 1 - (y / (window.innerHeight * 0.85));
+    }
+    rafPending = false;
+  });
+}, { passive: true });
+// ─────────────────────────────────────────────────────────────
+// 8. INITIAL VISIBILITY (elements in viewport on load)
+// ─────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  document.querySelectorAll('.reveal, .reveal-left').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.95) el.classList.add('visible');
+  });
+});
+</script>
+</body>
+</html>
